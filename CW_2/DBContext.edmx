@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBContextStoreContainer">
+    <EntitySet Name="UserDatas" EntityType="DBContext.Store.UserDatas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactDatas" EntityType="DBContext.Store.ContactDatas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransactionEnities" EntityType="DBContext.Store.TransactionEnities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventEntities" EntityType="DBContext.Store.EventEntities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserDataContactData" Association="DBContext.Store.UserDataContactData">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="ContactData" EntitySet="ContactDatas" />
+    </AssociationSet>
+    <AssociationSet Name="UserDataTransactionEnity" Association="DBContext.Store.UserDataTransactionEnity">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="TransactionEnity" EntitySet="TransactionEnities" />
+    </AssociationSet>
+    <AssociationSet Name="ContactDataTransactionEnity" Association="DBContext.Store.ContactDataTransactionEnity">
+      <End Role="ContactData" EntitySet="ContactDatas" />
+      <End Role="TransactionEnity" EntitySet="TransactionEnities" />
+    </AssociationSet>
+    <AssociationSet Name="UserDataEventEntity" Association="DBContext.Store.UserDataEventEntity">
+      <End Role="UserData" EntitySet="UserDatas" />
+      <End Role="EventEntity" EntitySet="EventEntities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserDatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ContactDatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AccountNo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ExpectAmt" Type="float" Nullable="true" />
+    <Property Name="BankName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
+    <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionEnities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Amount" Type="float" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
+    <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ContactDataId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="EventCat" Type="smallint" Nullable="false" />
+    <Property Name="EventAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventOn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Recurring" Type="bit" Nullable="true" />
+    <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="UserDataContactData">
+    <End Role="UserData" Type="DBContext.Store.UserDatas" Multiplicity="1" />
+    <End Role="ContactData" Type="DBContext.Store.ContactDatas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContactData">
+        <PropertyRef Name="UserDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDataTransactionEnity">
+    <End Role="UserData" Type="DBContext.Store.UserDatas" Multiplicity="1" />
+    <End Role="TransactionEnity" Type="DBContext.Store.TransactionEnities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionEnity">
+        <PropertyRef Name="UserDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ContactDataTransactionEnity">
+    <End Role="ContactData" Type="DBContext.Store.ContactDatas" Multiplicity="1" />
+    <End Role="TransactionEnity" Type="DBContext.Store.TransactionEnities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionEnity">
+        <PropertyRef Name="ContactDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserDataEventEntity">
+    <End Role="UserData" Type="DBContext.Store.UserDatas" Multiplicity="1" />
+    <End Role="EventEntity" Type="DBContext.Store.EventEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventEntity">
+        <PropertyRef Name="UserDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DBContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DBContextContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserDatas" EntityType="DBContext.UserData" />
+          <EntitySet Name="ContactDatas" EntityType="DBContext.ContactData" />
+          <EntitySet Name="TransactionEnities" EntityType="DBContext.TransactionEnity" />
+          <EntitySet Name="EventEntities" EntityType="DBContext.EventEntity" />
+          <AssociationSet Name="UserDataContactData" Association="DBContext.UserDataContactData">
+            <End Role="UserData" EntitySet="UserDatas" />
+            <End Role="ContactData" EntitySet="ContactDatas" />
+          </AssociationSet>
+          <AssociationSet Name="UserDataTransactionEnity" Association="DBContext.UserDataTransactionEnity">
+            <End Role="UserData" EntitySet="UserDatas" />
+            <End Role="TransactionEnity" EntitySet="TransactionEnities" />
+          </AssociationSet>
+          <AssociationSet Name="ContactDataTransactionEnity" Association="DBContext.ContactDataTransactionEnity">
+            <End Role="ContactData" EntitySet="ContactDatas" />
+            <End Role="TransactionEnity" EntitySet="TransactionEnities" />
+          </AssociationSet>
+          <AssociationSet Name="UserDataEventEntity" Association="DBContext.UserDataEventEntity">
+            <End Role="UserData" EntitySet="UserDatas" />
+            <End Role="EventEntity" EntitySet="EventEntities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="true" />
+        </EntityType>
+        <EntityType Name="ContactData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="true" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="AccountNo" Type="String" Nullable="true" />
+          <Property Name="ExpectAmt" Type="Double" Nullable="true" />
+          <Property Name="BankName" Type="String" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
+          <Property Name="UserDataId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionEnity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
+          <Property Name="UserDataId" Type="Guid" Nullable="false" />
+          <Property Name="ContactDataId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventEntity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <Property Name="EventCat" Type="Int16" Nullable="false" />
+          <Property Name="EventAt" Type="String" Nullable="false" />
+          <Property Name="EventOn" Type="String" Nullable="false" />
+          <Property Name="Recurring" Type="Boolean" Nullable="true" />
+          <Property Name="UserDataId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <Association Name="UserDataContactData">
+          <End Type="DBContext.UserData" Role="UserData" Multiplicity="1" />
+          <End Type="DBContext.ContactData" Role="ContactData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactData">
+              <PropertyRef Name="UserDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserDataTransactionEnity">
+          <End Type="DBContext.UserData" Role="UserData" Multiplicity="1" />
+          <End Type="DBContext.TransactionEnity" Role="TransactionEnity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionEnity">
+              <PropertyRef Name="UserDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ContactDataTransactionEnity">
+          <End Type="DBContext.ContactData" Role="ContactData" Multiplicity="1" />
+          <End Type="DBContext.TransactionEnity" Role="TransactionEnity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransactionEnity">
+              <PropertyRef Name="ContactDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserDataEventEntity">
+          <End Type="DBContext.UserData" Role="UserData" Multiplicity="1" />
+          <End Type="DBContext.EventEntity" Role="EventEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventEntity">
+              <PropertyRef Name="UserDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBContextStoreContainer" CdmEntityContainer="DBContextContainer">
+    <EntitySetMapping Name="UserDatas">
+      <EntityTypeMapping TypeName="IsTypeOf(DBContext.UserData)">
+        <MappingFragment StoreEntitySet="UserDatas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactDatas">
+      <EntityTypeMapping TypeName="IsTypeOf(DBContext.ContactData)">
+        <MappingFragment StoreEntitySet="ContactDatas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="ExpectAmt" ColumnName="ExpectAmt" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionEnities">
+      <EntityTypeMapping TypeName="IsTypeOf(DBContext.TransactionEnity)">
+        <MappingFragment StoreEntitySet="TransactionEnities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
+          <ScalarProperty Name="ContactDataId" ColumnName="ContactDataId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(DBContext.EventEntity)">
+        <MappingFragment StoreEntitySet="EventEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="EventCat" ColumnName="EventCat" />
+          <ScalarProperty Name="EventAt" ColumnName="EventAt" />
+          <ScalarProperty Name="EventOn" ColumnName="EventOn" />
+          <ScalarProperty Name="Recurring" ColumnName="Recurring" />
+          <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
