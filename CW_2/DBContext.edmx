@@ -63,6 +63,8 @@
     <Property Name="Amount" Type="float" Nullable="false" />
     <Property Name="CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="IsDeleted" Type="bit" Nullable="true" />
+    <Property Name="Recurring" Type="bit" Nullable="true" />
+    <Property Name="RecurringType" Type="int" Nullable="true" />
     <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
     <Property Name="ContactDataId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
@@ -77,6 +79,7 @@
     <Property Name="EventAt" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EventOn" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Recurring" Type="bit" Nullable="true" />
+    <Property Name="RecurringType" Type="int" Nullable="true" />
     <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="UserDataContactData">
@@ -189,6 +192,8 @@
           <Property Name="Amount" Type="Double" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
+          <Property Name="Recurring" Type="Boolean" Nullable="true" />
+          <Property Name="RecurringType" Type="Int32" Nullable="true" />
           <Property Name="UserDataId" Type="Guid" Nullable="false" />
           <Property Name="ContactDataId" Type="Guid" Nullable="false" />
         </EntityType>
@@ -203,6 +208,7 @@
           <Property Name="EventAt" Type="String" Nullable="false" />
           <Property Name="EventOn" Type="String" Nullable="false" />
           <Property Name="Recurring" Type="Boolean" Nullable="true" />
+          <Property Name="RecurringType" Type="Int32" Nullable="true" />
           <Property Name="UserDataId" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="UserDataContactData">
@@ -296,6 +302,8 @@
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Recurring" ColumnName="Recurring" />
+          <ScalarProperty Name="RecurringType" ColumnName="RecurringType" />
           <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
           <ScalarProperty Name="ContactDataId" ColumnName="ContactDataId" />
         </MappingFragment>
@@ -311,6 +319,7 @@
           <ScalarProperty Name="EventAt" ColumnName="EventAt" />
           <ScalarProperty Name="EventOn" ColumnName="EventOn" />
           <ScalarProperty Name="Recurring" ColumnName="Recurring" />
+          <ScalarProperty Name="RecurringType" ColumnName="RecurringType" />
           <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
         </MappingFragment>
       </EntityTypeMapping>

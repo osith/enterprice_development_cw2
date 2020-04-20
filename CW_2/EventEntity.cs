@@ -21,6 +21,7 @@ namespace CW_2
         public string EventAt { get; set; }
         public string EventOn { get; set; }
         public Nullable<bool> Recurring { get; set; }
+        public Nullable<int> RecurringType { get; set; }
         public System.Guid UserDataId { get; set; }
     }
 }

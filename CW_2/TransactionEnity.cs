@@ -18,6 +18,8 @@ namespace CW_2
         public double Amount { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<bool> Recurring { get; set; }
+        public Nullable<int> RecurringType { get; set; }
         public System.Guid UserDataId { get; set; }
         public System.Guid ContactDataId { get; set; }
     }

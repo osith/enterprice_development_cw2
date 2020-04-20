@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/18/2020 14:44:28
+-- Date Created: 04/21/2020 01:03:17
 -- Generated from EDMX file: D:\MSc\Enterprice Development\CW2\CW_2\CW_2\CW_2\DBContext.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [Database];
+USE [DataBaseFile];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -85,6 +85,8 @@ CREATE TABLE [dbo].[TransactionEnities] (
     [Amount] float  NOT NULL,
     [CreatedAt] datetime  NOT NULL,
     [IsDeleted] bit  NULL,
+    [Recurring] bit  NULL,
+    [RecurringType] int  NULL,
     [UserDataId] uniqueidentifier  NOT NULL,
     [ContactDataId] uniqueidentifier  NOT NULL
 );
@@ -99,6 +101,7 @@ CREATE TABLE [dbo].[EventEntities] (
     [EventAt] nvarchar(max)  NOT NULL,
     [EventOn] nvarchar(max)  NOT NULL,
     [Recurring] bit  NULL,
+    [RecurringType] int  NULL,
     [UserDataId] uniqueidentifier  NOT NULL
 );
 GO
