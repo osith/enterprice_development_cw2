@@ -2,13 +2,12 @@
 {
     public class Enums
     {
-        public enum WoolclasserStatus : int
+        public enum RecurringTypes : int
         {
-            YettoApply = 803750004
+            Yearly = 1,
+            Monthly = 2,
+            Weekly = 3
         }
-
-
-
 
         public struct ContactType
         {
