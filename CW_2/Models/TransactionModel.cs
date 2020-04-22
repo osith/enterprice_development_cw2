@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static CW_2.Models.ContactModal;
+using static CW_2.Models.Enums;
 
 namespace CW_2.Models
 {
@@ -25,6 +26,8 @@ namespace CW_2.Models
             public double Amount { get; set; }
             public DateTime CreatedAt { get; set; }
             public Nullable<bool> IsDeleted { get; set; }
+            public Nullable<bool> Recurring { get; set; }
+            public Nullable<int> RecurringType { get; set; }
             public Guid UserDataId { get; set; }
             public Guid ContactDataId { get; set; }
         }
@@ -61,6 +64,31 @@ namespace CW_2.Models
             var transactionEntries = Mapper.Map<List<TransactionEnity>>(transactions);
             DbContext.TransactionEnities.AddRange(transactionEntries);
             await DbContext.SaveChangesAsync();
+        }
+
+        public List<string> getRecurringTypes()
+        {
+            return new List<string>()
+            {
+                "Weekly",
+                "Monthly",
+                "Yearly"
+            };
+        }
+
+        public int? getRecurringTypeEnum(object selectedType)
+        {
+            var type = selectedType.ToString();
+            if (!string.IsNullOrEmpty(type))
+            {
+                if (selectedType.Equals("Weekly"))
+                    return (int)RecurringTypes.Weekly;
+                else if (selectedType.Equals("Monthly"))
+                    return (int)RecurringTypes.Monthly;
+                else if (selectedType.Equals("Yearly"))
+                    return (int)RecurringTypes.Yearly;
+            }
+            return null;
         }
 
 

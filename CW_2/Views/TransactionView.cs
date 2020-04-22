@@ -77,12 +77,15 @@ namespace CW_2.Views
             var transactionList = new List<TransactionDTO>();
             for (int i = 0; i < lblamounts.Count; i++)
             {
+                var data = cmbRecurrings[i].SelectedItem.ToString();
                 var transaction = new TransactionDTO()
                 {
                     Id = Guid.NewGuid(),
                     Amount = Double.Parse(txtAmounts[i].Text),
                     ContactDataId = _transaction.FindContact(cmbContacts[i].SelectedIndex),
                     CreatedAt = DateTime.UtcNow,
+                    Recurring = chkRecurrings[i].Checked == true ? true : false,
+                    RecurringType = chkRecurrings[i].Checked == true ? _transaction.getRecurringTypeEnum(cmbRecurrings[i].SelectedItem.ToString()) : null,
                     UserDataId = _loggedUser.Id
                 };
                 transactionList.Add(transaction);
@@ -164,6 +167,7 @@ namespace CW_2.Views
             cmbRecurring.Name = "comboBox1";
             cmbRecurring.Size = new System.Drawing.Size(100, 28);
             cmbRecurring.TabIndex = 4;
+            cmbRecurring.Items.AddRange(_transaction.getRecurringTypes().ToArray());
             cmbRecurrings.Add(cmbRecurring);
             this.Controls.Add(cmbRecurring);
         }
