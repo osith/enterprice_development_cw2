@@ -93,5 +93,16 @@ namespace CW_2.Views
             lblDyn.Visible = true;
             txtDyn.Visible = true;
         }
+
+        private void tableContacts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ContactView_Load(object sender, EventArgs e)
+        {
+            var contacts = _contact.loadAllContacts();
+            tableContacts.DataSource = contacts;
+        }
     }
 }

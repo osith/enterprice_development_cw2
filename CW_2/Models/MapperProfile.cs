@@ -14,6 +14,7 @@ namespace CW_2.Models
 
             CreateMap<ContactDTO, ContactData>();
             CreateMap<ContactData, ContactDTO>();
+            CreateMap<ContactData, ContactViewDTO>();
 
             CreateMap<ContactData, PayerDTO>();
             CreateMap<PayerDTO, ContactData>();

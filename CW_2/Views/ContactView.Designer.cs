@@ -229,12 +229,15 @@
             // 
             // tableContacts
             // 
+            this.tableContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableContacts.Location = new System.Drawing.Point(17, 52);
             this.tableContacts.Name = "tableContacts";
+            this.tableContacts.ReadOnly = true;
             this.tableContacts.RowTemplate.Height = 28;
             this.tableContacts.Size = new System.Drawing.Size(457, 404);
             this.tableContacts.TabIndex = 3;
+            this.tableContacts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableContacts_CellContentClick);
             // 
             // label3
             // 
@@ -255,6 +258,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ContactView";
             this.Text = "ContactView";
+            this.Load += new System.EventHandler(this.ContactView_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
