@@ -14,5 +14,12 @@
             public const string PAYER = "Payer";
             public const string PAYEE = "Payee";
         }
+
+        public enum MessageType
+        {
+            Error,
+            Warning,
+            Complete
+        }
     }
 }

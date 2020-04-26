@@ -50,7 +50,7 @@
     <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
     <Property Name="AccountNo" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ExpectAmt" Type="float" Nullable="true" />
-    <Property Name="BankName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BankName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CreatedAt" Type="datetime" Nullable="true" />
     <Property Name="IsDeleted" Type="bit" Nullable="true" />
     <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
@@ -179,7 +179,7 @@
           <Property Name="Email" Type="String" Nullable="true" />
           <Property Name="AccountNo" Type="String" Nullable="true" />
           <Property Name="ExpectAmt" Type="Double" Nullable="true" />
-          <Property Name="BankName" Type="String" Nullable="false" />
+          <Property Name="BankName" Type="String" Nullable="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
           <Property Name="UserDataId" Type="Guid" Nullable="false" />

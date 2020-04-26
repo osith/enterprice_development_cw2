@@ -83,6 +83,7 @@
     <Compile Include="Models\ContactModal.cs" />
     <Compile Include="Models\DataHandler.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Helper.cs" />
     <Compile Include="Models\MapperProfile.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\TransactionModel.cs" />

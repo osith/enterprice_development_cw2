@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/21/2020 01:03:17
+-- Date Created: 04/25/2020 14:42:35
 -- Generated from EDMX file: D:\MSc\Enterprice Development\CW2\CW_2\CW_2\CW_2\DBContext.edmx
 -- --------------------------------------------------
 
@@ -72,7 +72,7 @@ CREATE TABLE [dbo].[ContactDatas] (
     [Email] nvarchar(max)  NULL,
     [AccountNo] nvarchar(max)  NULL,
     [ExpectAmt] float  NULL,
-    [BankName] nvarchar(max)  NOT NULL,
+    [BankName] nvarchar(max)  NULL,
     [CreatedAt] datetime  NULL,
     [IsDeleted] bit  NULL,
     [UserDataId] uniqueidentifier  NOT NULL

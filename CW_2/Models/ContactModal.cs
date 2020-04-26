@@ -21,11 +21,17 @@ namespace CW_2.Models
             public Guid UserDataId { get; set; }
         }
 
-        public class ContactViewDTO {
+        public class ContactViewDTO
+        {
+            public Guid Id { get; set; }
             public string Name { get; set; }
             public string Type { get; set; }
             public string Contact { get; set; }
             public string Email { get; set; }
+            public string AccountNo { get; set; }
+            public Nullable<double> ExpectAmt { get; set; }
+            public string BankName { get; set; }
+            public Guid UserDataId { get; set; }
         }
 
         public class PayerDTO : ContactDTO
@@ -44,6 +50,7 @@ namespace CW_2.Models
             var contact = Mapper.Map<ContactData>(model);
             var currentUser = Mapper.Map<UserData>(loggedUser);
             contact.UserDataId = currentUser.Id;
+            contact.CreatedAt = DateTime.UtcNow;
             DbContext.ContactDatas.Add(contact);
             await DbContext.SaveChangesAsync();
         }
@@ -53,7 +60,24 @@ namespace CW_2.Models
             var contact = Mapper.Map<ContactData>(model);
             var currentUser = Mapper.Map<UserData>(loggedUser);
             contact.UserDataId = currentUser.Id;
+            contact.CreatedAt = DateTime.UtcNow;
             DbContext.ContactDatas.Add(contact);
+            await DbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateContact(PayerDTO updatemodel, RegisterUserDTO loggedUser)
+        {
+            var updateContact = await DbContext.ContactDatas.FindAsync(updatemodel.Id);
+            updatemodel.UserDataId = loggedUser.Id;
+            Mapper.Map(updatemodel, updateContact);
+            await DbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateContact(PayeeDTO updatemodel, RegisterUserDTO loggedUser)
+        {
+            var updateContact = await DbContext.ContactDatas.FindAsync(updatemodel.Id);
+            updatemodel.UserDataId = loggedUser.Id;
+            Mapper.Map(updatemodel, updateContact);
             await DbContext.SaveChangesAsync();
         }
 
@@ -63,13 +87,22 @@ namespace CW_2.Models
             return Mapper.Map<List<ContactViewDTO>>(contacts);
         }
 
-        //public async Task<ContactDTO> ValidateLogin(LoginUserDTO model)
-        //{
-        //    var user = await DbContext.UserDatas.Where(u => u.Phone == model.Phone && u.Password == model.Password)
-        //        .FirstOrDefaultAsync();
-        //    if (user != null)
-        //        return Mapper.Map<RegisterUserDTO>(user);
-        //    return null;
-        //}
+        public ContactViewDTO LoadContactInfo(Guid contactId)
+        {
+            var contact = DbContext.ContactDatas.Where(c => c.Id == contactId).FirstOrDefault();
+            return Mapper.Map<ContactViewDTO>(contact);
+        }
+
+        public async Task<bool> DeleteContact(Guid contactId)
+        {
+            var contact = await DbContext.ContactDatas.FindAsync(contactId);
+            if (contact != null)
+            {
+                contact.IsDeleted = true;
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.lblBnkName = new System.Windows.Forms.Label();
             this.txtBankName = new System.Windows.Forms.TextBox();
             this.lblDyn = new System.Windows.Forms.Label();
@@ -55,6 +57,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.lblBnkName);
             this.panel1.Controls.Add(this.txtBankName);
             this.panel1.Controls.Add(this.lblDyn);
@@ -70,10 +74,30 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(29, 123);
+            this.panel1.Location = new System.Drawing.Point(12, 123);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(418, 482);
+            this.panel1.Size = new System.Drawing.Size(526, 482);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(139, 398);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(127, 46);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(272, 398);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(127, 46);
+            this.btnUpdate.TabIndex = 18;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblBnkName
             // 
@@ -112,9 +136,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(241, 398);
+            this.btnSave.Location = new System.Drawing.Point(405, 398);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(146, 46);
+            this.btnSave.Size = new System.Drawing.Size(118, 46);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -122,9 +146,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(80, 398);
+            this.btnClear.Location = new System.Drawing.Point(6, 398);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(146, 46);
+            this.btnClear.Size = new System.Drawing.Size(127, 46);
             this.btnClear.TabIndex = 12;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -137,7 +161,7 @@
             this.cmbType.Items.AddRange(new object[] {
             "Payer",
             "Payee"});
-            this.cmbType.Location = new System.Drawing.Point(172, 120);
+            this.cmbType.Location = new System.Drawing.Point(172, 72);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(215, 28);
             this.cmbType.TabIndex = 11;
@@ -178,7 +202,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 123);
+            this.label5.Location = new System.Drawing.Point(29, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 20);
             this.label5.TabIndex = 6;
@@ -187,7 +211,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 80);
+            this.label4.Location = new System.Drawing.Point(29, 123);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 20);
             this.label4.TabIndex = 4;
@@ -195,7 +219,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(172, 74);
+            this.txtName.Location = new System.Drawing.Point(172, 120);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(215, 26);
             this.txtName.TabIndex = 3;
@@ -212,7 +236,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(437, 42);
+            this.label1.Location = new System.Drawing.Point(633, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 1;
@@ -222,9 +246,9 @@
             // 
             this.panel2.Controls.Add(this.tableContacts);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(466, 123);
+            this.panel2.Location = new System.Drawing.Point(544, 123);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(494, 482);
+            this.panel2.Size = new System.Drawing.Size(848, 482);
             this.panel2.TabIndex = 3;
             // 
             // tableContacts
@@ -232,17 +256,22 @@
             this.tableContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableContacts.Location = new System.Drawing.Point(17, 52);
+            this.tableContacts.MultiSelect = false;
             this.tableContacts.Name = "tableContacts";
             this.tableContacts.ReadOnly = true;
             this.tableContacts.RowTemplate.Height = 28;
-            this.tableContacts.Size = new System.Drawing.Size(457, 404);
+            this.tableContacts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tableContacts.Size = new System.Drawing.Size(816, 410);
             this.tableContacts.TabIndex = 3;
+            this.tableContacts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableContacts_CellContentClick);
             this.tableContacts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableContacts_CellContentClick);
+            this.tableContacts.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableContacts_CellContentClick);
+            this.tableContacts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableContacts_CellContentClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(205, 19);
+            this.label3.Location = new System.Drawing.Point(388, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 20);
             this.label3.TabIndex = 2;
@@ -252,7 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 640);
+            this.ClientSize = new System.Drawing.Size(1404, 661);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -291,5 +320,7 @@
         private System.Windows.Forms.TextBox txtDyn;
         private System.Windows.Forms.Label lblBnkName;
         private System.Windows.Forms.TextBox txtBankName;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button button1;
     }
 }
