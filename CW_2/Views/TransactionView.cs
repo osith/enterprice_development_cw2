@@ -9,7 +9,7 @@ namespace CW_2.Views
 {
     public partial class TransactionView : Form
     {
-        List<Label> lblamounts;
+        List<Label> lblAmounts;
         List<TextBox> txtAmounts;
         List<Label> lblContacts;
         List<ComboBox> cmbContacts;
@@ -21,7 +21,7 @@ namespace CW_2.Views
 
         public TransactionView(RegisterUserDTO user)
         {
-            lblamounts = new List<Label>();
+            lblAmounts = new List<Label>();
             txtAmounts = new List<TextBox>();
             lblContacts = new List<Label>();
             cmbContacts = new List<ComboBox>();
@@ -33,19 +33,9 @@ namespace CW_2.Views
             addTransactionField();
         }
 
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void TransactionView_Load(object sender, EventArgs e)
         {
-
+            loadTransactions();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -55,23 +45,22 @@ namespace CW_2.Views
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if (lblamounts.Count <= 0)
+            if (lblAmounts.Count <= 0)
             {
                 MessageBox.Show("No transaction records to save, add using Add button");
                 return;
             }
 
             var transactionList = new List<TransactionDTO>();
-            for (int i = 0; i < lblamounts.Count; i++)
+            for (int i = 0; i < lblAmounts.Count; i++)
             {
-                var data = cmbRecurrings[i].SelectedItem.ToString();
                 var transaction = new TransactionDTO()
                 {
                     Id = Guid.NewGuid(),
                     Amount = Double.Parse(txtAmounts[i].Text),
                     ContactDataId = _transaction.FindContact(cmbContacts[i].SelectedIndex),
                     CreatedAt = DateTime.UtcNow,
-                    Recurring = chkRecurrings[i].Checked == true ? true : false,
+                    Recurring = chkRecurrings[i].Checked ? true : false,
                     RecurringType = chkRecurrings[i].Checked == true ? _transaction.getRecurringTypeEnum(cmbRecurrings[i].SelectedItem.ToString()) : null,
                     UserDataId = _loggedUser.Id
                 };
@@ -81,7 +70,7 @@ namespace CW_2.Views
             await _transaction.SaveTransactions(transactionList);
         }
 
-        private async void addTransactionField()
+        private void addTransactionField()
         {
             Label lblAmount = new Label();
             TextBox txtAmount = new TextBox();
@@ -91,7 +80,7 @@ namespace CW_2.Views
             CheckBox chkRecurring = new CheckBox();
             ComboBox cmbRecurring = new ComboBox();
 
-            var sCount = lblamounts.Count;
+            var sCount = lblAmounts.Count;
 
             if (sCount > 10)
             {
@@ -101,16 +90,16 @@ namespace CW_2.Views
 
             //lblAmount
             lblAmount.AutoSize = true;
-            lblAmount.Location = new System.Drawing.Point(38, 87 + sCount * 25);
-            lblAmount.Name = "label2";
+            lblAmount.Location = new System.Drawing.Point(10, 87 + sCount * 25);
+            lblAmount.Name = "label" + sCount;
             lblAmount.Size = new System.Drawing.Size(65, 20);
             lblAmount.TabIndex = 1;
             lblAmount.Text = "Amount";
-            lblamounts.Add(lblAmount);
+            lblAmounts.Add(lblAmount);
             this.Controls.Add(lblAmount);
             //txtAmount
-            txtAmount.Location = new System.Drawing.Point(89, 84 + sCount * 25);
-            txtAmount.Name = "textBox1";
+            txtAmount.Location = new System.Drawing.Point(55, 84 + sCount * 25);
+            txtAmount.Name = "textBox" + sCount;
             txtAmount.Size = new System.Drawing.Size(100, 26);
             txtAmount.TabIndex = 3;
             txtAmounts.Add(txtAmount);
@@ -118,8 +107,8 @@ namespace CW_2.Views
 
             //lblContact
             lblContact.AutoSize = true;
-            lblContact.Location = new System.Drawing.Point(195, 87 + sCount * 25);
-            lblContact.Name = "label3";
+            lblContact.Location = new System.Drawing.Point(160, 87 + sCount * 25);
+            lblContact.Name = "label" + sCount;
             lblContact.Size = new System.Drawing.Size(65, 20);
             lblContact.TabIndex = 2;
             lblContact.Text = "Contact";
@@ -128,8 +117,8 @@ namespace CW_2.Views
             //cmbContact
             cmbContact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbContact.FormattingEnabled = true;
-            cmbContact.Location = new System.Drawing.Point(251, 84 + sCount * 25);
-            cmbContact.Name = "comboBox1";
+            cmbContact.Location = new System.Drawing.Point(205, 84 + sCount * 25);
+            cmbContact.Name = "comboBox" + sCount;
             cmbContact.Items.AddRange(_transaction.comboContacts.ToArray());
             cmbContact.Size = new System.Drawing.Size(100, 28);
             cmbContact.TabIndex = 4;
@@ -139,24 +128,110 @@ namespace CW_2.Views
             //chkRecurring
             chkRecurring.AutoSize = true;
             chkRecurring.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            chkRecurring.Location = new System.Drawing.Point(365, 85 + sCount * 25);
-            chkRecurring.Name = "checkBox1";
+            chkRecurring.Location = new System.Drawing.Point(305, 85 + sCount * 25);
+            chkRecurring.Name = "checkBox" + sCount;
             chkRecurring.Size = new System.Drawing.Size(113, 24);
             chkRecurring.TabIndex = 9;
             chkRecurring.Text = "Is Recurring";
             chkRecurring.UseVisualStyleBackColor = true;
             chkRecurrings.Add(chkRecurring);
+            chkRecurring.CheckedChanged += ChkRecurring_CheckedChanged;
             this.Controls.Add(chkRecurring);
             //cmbRecurring
             cmbRecurring.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbRecurring.FormattingEnabled = true;
-            cmbRecurring.Location = new System.Drawing.Point(465, 84 + sCount * 25);
-            cmbRecurring.Name = "comboBox1";
-            cmbRecurring.Size = new System.Drawing.Size(100, 28);
+            cmbRecurring.Location = new System.Drawing.Point(395, 84 + sCount * 25);
+            cmbRecurring.Name = "comboBox" + sCount;
+            cmbRecurring.Size = new System.Drawing.Size(60, 28);
             cmbRecurring.TabIndex = 4;
             cmbRecurring.Items.AddRange(_transaction.getRecurringTypes().ToArray());
+            cmbRecurring.Visible = false;
             cmbRecurrings.Add(cmbRecurring);
             this.Controls.Add(cmbRecurring);
+        }
+
+        private void ChkRecurring_CheckedChanged(object sender, EventArgs e)
+        {
+            var chkName = ((CheckBox)sender);
+            var chkNo = int.Parse(chkName.Name.Replace("checkBox", ""));
+            if (chkName.Checked)
+            {
+                chkRecurrings[chkNo].Checked = true;
+                cmbRecurrings[chkNo].Visible = true;
+            }
+            else
+            {
+                chkRecurrings[chkNo].Checked = false;
+                cmbRecurrings[chkNo].Visible = false;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearContent();
+        }
+
+        private void clearContent()
+        {
+            for (int i = 0; i < lblAmounts.Count; i++)
+            {
+                this.Controls.Remove(lblAmounts[i]);
+                this.Controls.Remove(txtAmounts[i]);
+                this.Controls.Remove(lblContacts[i]);
+                this.Controls.Remove(cmbContacts[i]);
+                this.Controls.Remove(chkRecurrings[i]);
+            }
+            lblAmounts.Clear();
+            txtAmounts.Clear();
+            lblContacts.Clear();
+            cmbContacts.Clear();
+            chkRecurrings.Clear();
+
+            //Add default
+            addTransactionField();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            addTransactionField();
+        }
+
+        private void loadTransactions()
+        {
+            var transactions = _transaction.LoadAllTransactions(_loggedUser.Id);
+            if (transactions.Count > 0)
+            {
+                tableTransaction.DataSource = transactions;
+                tableTransaction.Columns["Id"].Visible = false;
+                tableTransaction.Columns["Recurring"].Visible = false;
+            }
+        }
+
+        private void tableTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selected = (TransactionViewDTO)tableTransaction.SelectedRows[0].DataBoundItem;
+            if (selected != null)
+            {
+                var transactionDetails = _transaction.LoadTransactionInfo(selected.Id);
+                if (transactionDetails != null)
+                {
+                    clearContent();
+                    txtAmounts[0].Text = transactionDetails.Amount.ToString();
+                    cmbContacts[0].SelectedItem = transactionDetails.ContactName;
+                    chkRecurrings[0].Checked = transactionDetails.Recurring == true ? true : false;
+                    cmbRecurrings[0].SelectedItem = transactionDetails.RecurringType;
+                }
+            }
         }
     }
 }

@@ -32,6 +32,17 @@ namespace CW_2.Models
             public Guid ContactDataId { get; set; }
         }
 
+        public class TransactionViewDTO
+        {
+            public Guid Id { get; set; }
+            public double Amount { get; set; }
+            public DateTime CreatedAt { get; set; }
+            public Nullable<bool> Recurring { get; set; }
+            public string RecurringType { get; set; }
+            public string ContactName { get; set; }
+        }
+
+
         public List<object> comboContacts { get; set; }
 
         public List<ContactDTO> Contacts
@@ -91,6 +102,58 @@ namespace CW_2.Models
             return null;
         }
 
+        public List<TransactionViewDTO> LoadAllTransactions(Guid userId)
+        {
+            var transactions = (from t in DbContext.TransactionEnities
+                                join c in DbContext.ContactDatas
+                                on t.ContactDataId equals c.Id
+                                where t.IsDeleted == null && c.IsDeleted == null && t.UserDataId == userId
+                                select new TransactionViewDTO()
+                                {
+                                    Id = t.Id,
+                                    Amount = t.Amount,
+                                    ContactName = c.Name,
+                                    Recurring = t.Recurring,
+                                    RecurringType = t.RecurringType.ToString(),
+                                    CreatedAt = t.CreatedAt
+                                }).ToList();
+
+            foreach (var transaction in transactions)
+                transaction.RecurringType = getRecurringType(transaction.RecurringType);
+
+            return transactions;
+        }
+
+        private string getRecurringType(string selectedType)
+        {
+            if (selectedType == "3")
+                return RecurringTypes.Weekly.ToString();
+            else if (selectedType == "2")
+                return RecurringTypes.Monthly.ToString();
+            else if (selectedType == "1")
+                return RecurringTypes.Yearly.ToString();
+            return string.Empty;
+        }
+
+
+        public TransactionViewDTO LoadTransactionInfo(Guid transactionId)
+        {
+            var transaction = (from t in DbContext.TransactionEnities
+                               join c in DbContext.ContactDatas
+                               on t.ContactDataId equals c.Id
+                               where t.Id == transactionId
+                               select new TransactionViewDTO()
+                               {
+                                   Id = t.Id,
+                                   Amount = t.Amount,
+                                   ContactName = c.Name,
+                                   Recurring = t.Recurring,
+                                   RecurringType = t.RecurringType.ToString(),
+                                   CreatedAt = t.CreatedAt
+                               }).FirstOrDefault();
+            transaction.RecurringType = getRecurringType(transaction.RecurringType);
+            return transaction;
+        }
 
     }
 }
