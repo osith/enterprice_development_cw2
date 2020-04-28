@@ -75,12 +75,15 @@
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Type" Type="smallint" Nullable="false" />
-    <Property Name="EventCat" Type="smallint" Nullable="false" />
-    <Property Name="EventAt" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="EventOn" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventAt" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="EventOn" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CompleteBefore" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Complete" Type="datetime" Nullable="true" />
     <Property Name="Recurring" Type="bit" Nullable="true" />
     <Property Name="RecurringType" Type="int" Nullable="true" />
     <Property Name="UserDataId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="true" />
+    <Property Name="IsDeleted" Type="bit" Nullable="true" />
   </EntityType>
   <Association Name="UserDataContactData">
     <End Role="UserData" Type="DBContext.Store.UserDatas" Multiplicity="1" />
@@ -320,9 +323,13 @@
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="EventAt" ColumnName="EventAt" />
           <ScalarProperty Name="EventOn" ColumnName="EventOn" />
+          <ScalarProperty Name="CompleteBefore" ColumnName="CompleteBefore" />
+          <ScalarProperty Name="Complete" ColumnName="Complete" />
           <ScalarProperty Name="Recurring" ColumnName="Recurring" />
           <ScalarProperty Name="RecurringType" ColumnName="RecurringType" />
           <ScalarProperty Name="UserDataId" ColumnName="UserDataId" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

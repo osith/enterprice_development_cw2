@@ -29,9 +29,26 @@ namespace CW_2.Views
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var next = new EventView();
+            var next = new EventView(_loggedUser);
             next.Show();
-            this.Hide();
+            this.Dispose();
+        }
+
+        private void HomeNavView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HomeNavView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var next = new LoginView();
+            next.Show();
+            this.Dispose();
         }
     }
 }
