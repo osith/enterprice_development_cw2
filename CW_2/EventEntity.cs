@@ -18,8 +18,7 @@ namespace CW_2
         public string Description { get; set; }
         public short Type { get; set; }
         public string EventAt { get; set; }
-        public string EventOn { get; set; }
-        public string CompleteBefore { get; set; }
+        public Nullable<System.DateTime> EventOn { get; set; }
         public Nullable<System.DateTime> Complete { get; set; }
         public Nullable<bool> Recurring { get; set; }
         public Nullable<int> RecurringType { get; set; }

@@ -31,10 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblPlace = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblDynDate = new System.Windows.Forms.Label();
             this.txtPlace = new System.Windows.Forms.TextBox();
             this.chkIsRecurring = new System.Windows.Forms.CheckBox();
             this.cmbRecurringType = new System.Windows.Forms.ComboBox();
@@ -48,10 +48,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.eventTabel = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventTabel)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,27 +77,28 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 221);
+            this.label3.Location = new System.Drawing.Point(12, 229);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Type";
             // 
-            // label5
+            // lblPlace
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 260);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "At (Place)";
+            this.lblPlace.AutoSize = true;
+            this.lblPlace.Location = new System.Drawing.Point(12, 372);
+            this.lblPlace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPlace.Name = "lblPlace";
+            this.lblPlace.Size = new System.Drawing.Size(78, 20);
+            this.lblPlace.TabIndex = 5;
+            this.lblPlace.Text = "At (Place)";
+            this.lblPlace.Visible = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 341);
+            this.label7.Location = new System.Drawing.Point(12, 273);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(116, 20);
@@ -110,35 +111,38 @@
             this.cmbType.Items.AddRange(new object[] {
             "Appointment",
             "Task"});
-            this.cmbType.Location = new System.Drawing.Point(166, 217);
+            this.cmbType.Location = new System.Drawing.Point(166, 225);
             this.cmbType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(328, 28);
             this.cmbType.TabIndex = 8;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
-            // label8
+            // lblDynDate
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 301);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(148, 20);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "On (Date and Time)";
+            this.lblDynDate.AutoSize = true;
+            this.lblDynDate.Location = new System.Drawing.Point(12, 327);
+            this.lblDynDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDynDate.Name = "lblDynDate";
+            this.lblDynDate.Size = new System.Drawing.Size(148, 20);
+            this.lblDynDate.TabIndex = 10;
+            this.lblDynDate.Text = "On (Date and Time)";
+            this.lblDynDate.Visible = false;
             // 
             // txtPlace
             // 
-            this.txtPlace.Location = new System.Drawing.Point(166, 256);
+            this.txtPlace.Location = new System.Drawing.Point(166, 368);
             this.txtPlace.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPlace.Name = "txtPlace";
             this.txtPlace.Size = new System.Drawing.Size(328, 26);
             this.txtPlace.TabIndex = 11;
+            this.txtPlace.Visible = false;
             // 
             // chkIsRecurring
             // 
             this.chkIsRecurring.AutoSize = true;
             this.chkIsRecurring.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            this.chkIsRecurring.Location = new System.Drawing.Point(166, 341);
+            this.chkIsRecurring.Location = new System.Drawing.Point(166, 273);
             this.chkIsRecurring.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkIsRecurring.Name = "chkIsRecurring";
             this.chkIsRecurring.Size = new System.Drawing.Size(121, 24);
@@ -146,6 +150,7 @@
             this.chkIsRecurring.Text = "Is Recurring";
             this.chkIsRecurring.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.chkIsRecurring.UseVisualStyleBackColor = true;
+            this.chkIsRecurring.CheckedChanged += new System.EventHandler(this.chkIsRecurring_CheckedChanged);
             // 
             // cmbRecurringType
             // 
@@ -155,11 +160,12 @@
             "Weekly",
             "Monthly",
             "Yearly"});
-            this.cmbRecurringType.Location = new System.Drawing.Point(320, 341);
+            this.cmbRecurringType.Location = new System.Drawing.Point(320, 273);
             this.cmbRecurringType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbRecurringType.Name = "cmbRecurringType";
             this.cmbRecurringType.Size = new System.Drawing.Size(174, 28);
             this.cmbRecurringType.TabIndex = 15;
+            this.cmbRecurringType.Visible = false;
             // 
             // panel1
             // 
@@ -173,10 +179,10 @@
             this.panel1.Controls.Add(this.cmbRecurringType);
             this.panel1.Controls.Add(this.chkIsRecurring);
             this.panel1.Controls.Add(this.txtPlace);
-            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.lblDynDate);
             this.panel1.Controls.Add(this.cmbType);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.lblPlace);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(16, 80);
@@ -189,11 +195,12 @@
             // 
             this.dtpDateTime.CustomFormat = "MM/dd/yyyy hh:mm tt";
             this.dtpDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateTime.Location = new System.Drawing.Point(166, 296);
+            this.dtpDateTime.Location = new System.Drawing.Point(166, 322);
             this.dtpDateTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDateTime.Name = "dtpDateTime";
             this.dtpDateTime.Size = new System.Drawing.Size(328, 26);
             this.dtpDateTime.TabIndex = 21;
+            this.dtpDateTime.Visible = false;
             // 
             // txtDescription
             // 
@@ -206,10 +213,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(375, 480);
+            this.btnSave.Location = new System.Drawing.Point(385, 480);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(108, 46);
+            this.btnSave.Size = new System.Drawing.Size(109, 46);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -217,30 +224,32 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(146, 480);
+            this.btnClear.Location = new System.Drawing.Point(136, 480);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(113, 46);
+            this.btnClear.Size = new System.Drawing.Size(123, 46);
             this.btnClear.TabIndex = 18;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(267, 480);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 46);
+            this.btnUpdate.Size = new System.Drawing.Size(109, 46);
             this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(26, 480);
+            this.btnDelete.Location = new System.Drawing.Point(6, 480);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(112, 46);
+            this.btnDelete.Size = new System.Drawing.Size(122, 46);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -250,7 +259,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.radioButton2);
             this.panel2.Controls.Add(this.radioButton1);
-            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Controls.Add(this.eventTabel);
             this.panel2.Location = new System.Drawing.Point(539, 80);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
@@ -281,14 +290,21 @@
             this.radioButton1.Text = "Curent Week";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // eventTabel
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 48);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(784, 528);
-            this.dataGridView1.TabIndex = 0;
+            this.eventTabel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.eventTabel.Location = new System.Drawing.Point(17, 48);
+            this.eventTabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.eventTabel.MultiSelect = false;
+            this.eventTabel.Name = "eventTabel";
+            this.eventTabel.ReadOnly = true;
+            this.eventTabel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.eventTabel.Size = new System.Drawing.Size(784, 528);
+            this.eventTabel.TabIndex = 0;
+            this.eventTabel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.eventTabel.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.eventTabel.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.eventTabel.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // EventView
             // 
@@ -307,7 +323,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventTabel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,10 +334,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblPlace;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbType;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDynDate;
         private System.Windows.Forms.TextBox txtPlace;
         private System.Windows.Forms.CheckBox chkIsRecurring;
         private System.Windows.Forms.ComboBox cmbRecurringType;
@@ -331,7 +347,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView eventTabel;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.DateTimePicker dtpDateTime;
         private System.Windows.Forms.RadioButton radioButton2;

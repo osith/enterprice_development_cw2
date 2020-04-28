@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using static CW_2.Models.ContactModal;
+using static CW_2.Models.EventModel;
 using static CW_2.Models.TransactionModel;
 using static CW_2.Models.UserModal;
 
@@ -25,8 +26,14 @@ namespace CW_2.Models
             CreateMap<TransactionEnity, TransactionDTO>();
             CreateMap<TransactionDTO, TransactionEnity>();
 
-
-            //.ForMember(dest => dest.ExpectAmt, opt => opt.MapFrom(field => field.Exp));
+            CreateMap<AppointmentDTO, EventEntity>();
+            CreateMap<TaskDTO, EventEntity>();
+            CreateMap<EventEntity, EventViewDTO>()
+                .ForMember(dest => dest.RecurringType,
+                opt => opt.MapFrom(field => field.RecurringType == 1 ? "Yearly"
+                : field.RecurringType == 2 ? "Monthly" : field.RecurringType == 3 ? "Weekly" : ""))
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(field => field.Type == 1 ? "Appointment" : "Task"))
+                .ForMember(dest => dest.CompleteBefore, opt => opt.MapFrom(field => field.Complete));
         }
     }
 }

@@ -15,6 +15,18 @@
             public const string PAYEE = "Payee";
         }
 
+        public struct EventTypeString
+        {
+            public const string APPOINTMENT = "Appointment";
+            public const string TASK = "Task";
+        }
+
+        public enum EventType
+        {
+            Appointment = 1,
+            Task = 2
+        }
+
         public enum MessageType
         {
             Error,

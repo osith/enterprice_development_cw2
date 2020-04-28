@@ -149,11 +149,6 @@ namespace CW_2.Views
             }
         }
 
-        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
             if (updateUserId != Guid.Empty)
