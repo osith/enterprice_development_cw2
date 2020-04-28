@@ -135,6 +135,12 @@ namespace CW_2.Models
             return string.Empty;
         }
 
+        public async Task UpdateTransaction(TransactionDTO transaction)
+        {
+            var updateTransaction = await DbContext.TransactionEnities.FindAsync(transaction.Id);
+            Mapper.Map(transaction, updateTransaction);
+            await DbContext.SaveChangesAsync();
+        }
 
         public TransactionViewDTO LoadTransactionInfo(Guid transactionId)
         {

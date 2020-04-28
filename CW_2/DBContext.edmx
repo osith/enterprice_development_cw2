@@ -204,12 +204,15 @@
           <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Type" Type="Int16" Nullable="false" />
-          <Property Name="EventCat" Type="Int16" Nullable="false" />
-          <Property Name="EventAt" Type="String" Nullable="false" />
-          <Property Name="EventOn" Type="String" Nullable="false" />
+          <Property Name="EventAt" Type="String" Nullable="true" />
+          <Property Name="EventOn" Type="String" Nullable="true" />
+          <Property Name="CompleteBefore" Type="String" Nullable="false" />
+          <Property Name="Complete" Type="DateTime" Nullable="true" />
           <Property Name="Recurring" Type="Boolean" Nullable="true" />
           <Property Name="RecurringType" Type="Int32" Nullable="true" />
           <Property Name="UserDataId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
         </EntityType>
         <Association Name="UserDataContactData">
           <End Type="DBContext.UserData" Role="UserData" Multiplicity="1" />
@@ -315,7 +318,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="EventCat" ColumnName="EventCat" />
           <ScalarProperty Name="EventAt" ColumnName="EventAt" />
           <ScalarProperty Name="EventOn" ColumnName="EventOn" />
           <ScalarProperty Name="Recurring" ColumnName="Recurring" />

@@ -26,5 +26,12 @@ namespace CW_2.Views
             next.Show();
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var next = new EventView();
+            next.Show();
+            this.Hide();
+        }
     }
 }

@@ -17,11 +17,14 @@ namespace CW_2
         public System.Guid Id { get; set; }
         public string Description { get; set; }
         public short Type { get; set; }
-        public short EventCat { get; set; }
         public string EventAt { get; set; }
         public string EventOn { get; set; }
+        public string CompleteBefore { get; set; }
+        public Nullable<System.DateTime> Complete { get; set; }
         public Nullable<bool> Recurring { get; set; }
         public Nullable<int> RecurringType { get; set; }
         public System.Guid UserDataId { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     }
 }

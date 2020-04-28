@@ -18,6 +18,7 @@ namespace CW_2.Views
 
         private readonly TransactionModel _transaction;
         private readonly RegisterUserDTO _loggedUser;
+        private TransactionViewDTO selectedTransaction;
 
         public TransactionView(RegisterUserDTO user)
         {
@@ -68,6 +69,7 @@ namespace CW_2.Views
             }
 
             await _transaction.SaveTransactions(transactionList);
+            loadTransactions();
         }
 
         private void addTransactionField()
@@ -196,9 +198,22 @@ namespace CW_2.Views
 
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private async void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            if (selectedTransaction != null) {
+                var transaction = new TransactionDTO()
+                {
+                    Id = selectedTransaction.Id,
+                    Amount = Double.Parse(txtAmounts[0].Text),
+                    ContactDataId = _transaction.FindContact(cmbContacts[0].SelectedIndex),
+                    CreatedAt = DateTime.UtcNow,
+                    Recurring = chkRecurrings[0].Checked ? true : false,
+                    RecurringType = chkRecurrings[0].Checked == true ? _transaction.getRecurringTypeEnum(cmbRecurrings[0].SelectedItem.ToString()) : null,
+                    UserDataId = _loggedUser.Id
+                };
+                await _transaction.UpdateTransaction(transaction);
+                loadTransactions();
+            }           
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -219,10 +234,10 @@ namespace CW_2.Views
 
         private void tableTransaction_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selected = (TransactionViewDTO)tableTransaction.SelectedRows[0].DataBoundItem;
-            if (selected != null)
+            selectedTransaction = (TransactionViewDTO)tableTransaction.SelectedRows[0].DataBoundItem;
+            if (selectedTransaction != null)
             {
-                var transactionDetails = _transaction.LoadTransactionInfo(selected.Id);
+                var transactionDetails = _transaction.LoadTransactionInfo(selectedTransaction.Id);
                 if (transactionDetails != null)
                 {
                     clearContent();
@@ -230,6 +245,10 @@ namespace CW_2.Views
                     cmbContacts[0].SelectedItem = transactionDetails.ContactName;
                     chkRecurrings[0].Checked = transactionDetails.Recurring == true ? true : false;
                     cmbRecurrings[0].SelectedItem = transactionDetails.RecurringType;
+
+                    if (chkRecurrings[0].Checked)
+                        cmbRecurrings[0].Visible = false;
+
                 }
             }
         }
