@@ -85,7 +85,7 @@ namespace CW_2.Views
 
             var sCount = lblAmounts.Count;
 
-            if (sCount > 10)
+            if (sCount > 9)
             {
                 MessageBox.Show("You can add ten(10) transactions at a time");
                 return;
@@ -93,49 +93,54 @@ namespace CW_2.Views
 
             //lblAmount
             lblAmount.AutoSize = true;
-            lblAmount.Location = new System.Drawing.Point(10, 87 + sCount * 25);
+            lblAmount.Location = new System.Drawing.Point(10, 87 + sCount * 30);
             lblAmount.Name = "label" + sCount;
             lblAmount.Size = new System.Drawing.Size(65, 20);
             lblAmount.TabIndex = 1;
             lblAmount.Text = "Amount";
+            lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblAmounts.Add(lblAmount);
             this.Controls.Add(lblAmount);
             //txtAmount
-            txtAmount.Location = new System.Drawing.Point(55, 84 + sCount * 25);
+            txtAmount.Location = new System.Drawing.Point(70, 84 + sCount * 30);
             txtAmount.Name = "textBox" + sCount;
             txtAmount.Size = new System.Drawing.Size(100, 26);
             txtAmount.TabIndex = 3;
+            txtAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             txtAmounts.Add(txtAmount);
             this.Controls.Add(txtAmount);
 
             //lblContact
             lblContact.AutoSize = true;
-            lblContact.Location = new System.Drawing.Point(160, 87 + sCount * 25);
+            lblContact.Location = new System.Drawing.Point(175, 87 + sCount * 30);
             lblContact.Name = "label" + sCount;
             lblContact.Size = new System.Drawing.Size(65, 20);
             lblContact.TabIndex = 2;
+            lblContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblContact.Text = "Contact";
             lblContacts.Add(lblContact);
             this.Controls.Add(lblContact);
             //cmbContact
             cmbContact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbContact.FormattingEnabled = true;
-            cmbContact.Location = new System.Drawing.Point(205, 84 + sCount * 25);
+            cmbContact.Location = new System.Drawing.Point(235, 84 + sCount * 30);
             cmbContact.Name = "comboBox" + sCount;
             cmbContact.Items.AddRange(_transaction.comboContacts.ToArray());
             cmbContact.Size = new System.Drawing.Size(100, 28);
             cmbContact.TabIndex = 4;
+            cmbContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             cmbContacts.Add(cmbContact);
             this.Controls.Add(cmbContact);
 
             //chkRecurring
             chkRecurring.AutoSize = true;
             chkRecurring.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            chkRecurring.Location = new System.Drawing.Point(305, 85 + sCount * 25);
+            chkRecurring.Location = new System.Drawing.Point(335, 85 + sCount * 30);
             chkRecurring.Name = "checkBox" + sCount;
             chkRecurring.Size = new System.Drawing.Size(113, 24);
             chkRecurring.TabIndex = 9;
             chkRecurring.Text = "Is Recurring";
+            chkRecurring.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chkRecurring.UseVisualStyleBackColor = true;
             chkRecurrings.Add(chkRecurring);
             chkRecurring.CheckedChanged += ChkRecurring_CheckedChanged;
@@ -143,10 +148,11 @@ namespace CW_2.Views
             //cmbRecurring
             cmbRecurring.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbRecurring.FormattingEnabled = true;
-            cmbRecurring.Location = new System.Drawing.Point(395, 84 + sCount * 25);
+            cmbRecurring.Location = new System.Drawing.Point(445, 84 + sCount * 30);
             cmbRecurring.Name = "comboBox" + sCount;
-            cmbRecurring.Size = new System.Drawing.Size(60, 28);
+            cmbRecurring.Size = new System.Drawing.Size(70, 28);
             cmbRecurring.TabIndex = 4;
+            cmbRecurring.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             cmbRecurring.Items.AddRange(_transaction.getRecurringTypes().ToArray());
             cmbRecurring.Visible = false;
             cmbRecurrings.Add(cmbRecurring);
@@ -183,12 +189,14 @@ namespace CW_2.Views
                 this.Controls.Remove(lblContacts[i]);
                 this.Controls.Remove(cmbContacts[i]);
                 this.Controls.Remove(chkRecurrings[i]);
+                this.Controls.Remove(cmbRecurrings[i]);
             }
             lblAmounts.Clear();
             txtAmounts.Clear();
             lblContacts.Clear();
             cmbContacts.Clear();
             chkRecurrings.Clear();
+            cmbRecurrings.Clear();
 
             //Add default
             addTransactionField();

@@ -167,6 +167,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\PredictionView.resx">
       <DependentUpon>PredictionView.cs</DependentUpon>
@@ -213,6 +214,7 @@
       <LastGenOutput>DBContext.cs</LastGenOutput>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Content>
+    <None Include="Resources\contact.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

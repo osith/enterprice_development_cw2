@@ -39,6 +39,7 @@
             this.chkIsRecurring = new System.Windows.Forms.CheckBox();
             this.cmbRecurringType = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.dtpDateTime = new System.Windows.Forms.DateTimePicker();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.eventTabel = new System.Windows.Forms.DataGridView();
@@ -57,40 +59,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(621, 29);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 20);
+            this.label1.Size = new System.Drawing.Size(147, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Events";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 46);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(16, 68);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.Size = new System.Drawing.Size(109, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Description";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 229);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(16, 251);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 20);
+            this.label3.Size = new System.Drawing.Size(57, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "Type";
             // 
             // lblPlace
             // 
             this.lblPlace.AutoSize = true;
-            this.lblPlace.Location = new System.Drawing.Point(12, 372);
+            this.lblPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlace.Location = new System.Drawing.Point(16, 394);
             this.lblPlace.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlace.Name = "lblPlace";
-            this.lblPlace.Size = new System.Drawing.Size(78, 20);
+            this.lblPlace.Size = new System.Drawing.Size(99, 25);
             this.lblPlace.TabIndex = 5;
             this.lblPlace.Text = "At (Place)";
             this.lblPlace.Visible = false;
@@ -98,78 +104,85 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 273);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(16, 295);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 20);
+            this.label7.Size = new System.Drawing.Size(145, 25);
             this.label7.TabIndex = 7;
             this.label7.Text = "Recurring Type";
             // 
             // cmbType
             // 
             this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType.Items.AddRange(new object[] {
             "Appointment",
             "Task"});
-            this.cmbType.Location = new System.Drawing.Point(166, 225);
+            this.cmbType.Location = new System.Drawing.Point(170, 247);
             this.cmbType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(328, 28);
+            this.cmbType.Size = new System.Drawing.Size(328, 33);
             this.cmbType.TabIndex = 8;
             this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
             // lblDynDate
             // 
             this.lblDynDate.AutoSize = true;
-            this.lblDynDate.Location = new System.Drawing.Point(12, 327);
+            this.lblDynDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDynDate.Location = new System.Drawing.Point(16, 349);
             this.lblDynDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDynDate.Name = "lblDynDate";
-            this.lblDynDate.Size = new System.Drawing.Size(148, 20);
+            this.lblDynDate.Size = new System.Drawing.Size(186, 25);
             this.lblDynDate.TabIndex = 10;
             this.lblDynDate.Text = "On (Date and Time)";
             this.lblDynDate.Visible = false;
             // 
             // txtPlace
             // 
-            this.txtPlace.Location = new System.Drawing.Point(166, 368);
+            this.txtPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlace.Location = new System.Drawing.Point(170, 394);
             this.txtPlace.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPlace.Name = "txtPlace";
-            this.txtPlace.Size = new System.Drawing.Size(328, 26);
+            this.txtPlace.Size = new System.Drawing.Size(328, 30);
             this.txtPlace.TabIndex = 11;
             this.txtPlace.Visible = false;
             // 
             // chkIsRecurring
             // 
             this.chkIsRecurring.AutoSize = true;
-            this.chkIsRecurring.CheckAlign = System.Drawing.ContentAlignment.TopRight;
-            this.chkIsRecurring.Location = new System.Drawing.Point(166, 273);
+            this.chkIsRecurring.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkIsRecurring.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkIsRecurring.Location = new System.Drawing.Point(170, 299);
             this.chkIsRecurring.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkIsRecurring.Name = "chkIsRecurring";
-            this.chkIsRecurring.Size = new System.Drawing.Size(121, 24);
+            this.chkIsRecurring.Size = new System.Drawing.Size(141, 29);
             this.chkIsRecurring.TabIndex = 14;
             this.chkIsRecurring.Text = "Is Recurring";
-            this.chkIsRecurring.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.chkIsRecurring.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkIsRecurring.UseVisualStyleBackColor = true;
             this.chkIsRecurring.CheckedChanged += new System.EventHandler(this.chkIsRecurring_CheckedChanged);
             // 
             // cmbRecurringType
             // 
             this.cmbRecurringType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecurringType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRecurringType.FormattingEnabled = true;
             this.cmbRecurringType.Items.AddRange(new object[] {
             "Weekly",
             "Monthly",
             "Yearly"});
-            this.cmbRecurringType.Location = new System.Drawing.Point(320, 273);
+            this.cmbRecurringType.Location = new System.Drawing.Point(324, 295);
             this.cmbRecurringType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbRecurringType.Name = "cmbRecurringType";
-            this.cmbRecurringType.Size = new System.Drawing.Size(174, 28);
+            this.cmbRecurringType.Size = new System.Drawing.Size(174, 33);
             this.cmbRecurringType.TabIndex = 15;
             this.cmbRecurringType.Visible = false;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.dtpDateTime);
             this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.btnSave);
@@ -191,20 +204,32 @@
             this.panel1.Size = new System.Drawing.Size(515, 591);
             this.panel1.TabIndex = 16;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 32);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "AddEvents ";
+            // 
             // dtpDateTime
             // 
             this.dtpDateTime.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.dtpDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateTime.Location = new System.Drawing.Point(166, 322);
+            this.dtpDateTime.Location = new System.Drawing.Point(210, 345);
             this.dtpDateTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDateTime.Name = "dtpDateTime";
-            this.dtpDateTime.Size = new System.Drawing.Size(328, 26);
+            this.dtpDateTime.Size = new System.Drawing.Size(288, 30);
             this.dtpDateTime.TabIndex = 21;
             this.dtpDateTime.Visible = false;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(166, 43);
+            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(170, 65);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -213,18 +238,21 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(385, 480);
+            this.btnSave.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(389, 502);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 46);
             this.btnSave.TabIndex = 19;
             this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(136, 480);
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(140, 502);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(123, 46);
@@ -235,28 +263,33 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(267, 480);
+            this.btnUpdate.BackColor = System.Drawing.Color.Khaki;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(271, 502);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(109, 46);
             this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(6, 480);
+            this.btnDelete.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(10, 502);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(122, 46);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.radioButton2);
             this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.eventTabel);
@@ -266,13 +299,24 @@
             this.panel2.Size = new System.Drawing.Size(817, 589);
             this.panel2.TabIndex = 17;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(11, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(171, 32);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "View Events";
+            // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(567, 12);
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(639, 12);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(136, 24);
+            this.radioButton2.Size = new System.Drawing.Size(162, 29);
             this.radioButton2.TabIndex = 2;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Current Month";
@@ -281,10 +325,11 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(426, 12);
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(478, 12);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(127, 24);
+            this.radioButton1.Size = new System.Drawing.Size(153, 29);
             this.radioButton1.TabIndex = 1;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Curent Week";
@@ -316,7 +361,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "EventView";
-            this.Text = "EventView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Event";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EventView_FormClosed);
             this.Load += new System.EventHandler(this.EventView_Load);
             this.panel1.ResumeLayout(false);
@@ -352,5 +398,7 @@
         private System.Windows.Forms.DateTimePicker dtpDateTime;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
     }
 }
