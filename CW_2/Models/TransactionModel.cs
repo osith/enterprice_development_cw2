@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using static CW_2.Models.ContactModal;
 using static CW_2.Models.Enums;
 
@@ -159,6 +162,71 @@ namespace CW_2.Models
                                }).FirstOrDefault();
             transaction.RecurringType = getRecurringType(transaction.RecurringType);
             return transaction;
+        }
+
+
+        public Task<bool> WriteTransactionToXML(List<TransactionDTO> transactions) {
+            return Task.Run(()=>WritetoFile(transactions));
+        }
+
+
+        private bool WritetoFile(List<TransactionDTO> transactions)
+        {
+            foreach (var transaction in transactions) {
+                try
+                {
+                    String fileLocation = String.Format("{0}\\{1}",
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Transaction.xml");
+                    if (!File.Exists(fileLocation))
+                    {
+                        XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                        xmlWriterSettings.Indent = true;
+                        xmlWriterSettings.NewLineOnAttributes = true;
+                        using (XmlWriter xmlWriter = XmlWriter.Create(fileLocation, xmlWriterSettings))
+                        {
+                            xmlWriter.WriteStartDocument();
+                            xmlWriter.WriteComment("Transaction XML File");
+                            xmlWriter.WriteStartElement("TransactionData");
+                            xmlWriter.WriteStartElement("Transaction");
+                            xmlWriter.WriteElementString("Id", transaction.Id.ToString());
+                            xmlWriter.WriteElementString("Amount", transaction.Amount.ToString());
+                            xmlWriter.WriteElementString("ContactDataId", transaction.ContactDataId.ToString());
+                            xmlWriter.WriteElementString("CreatedAt", transaction.CreatedAt.ToString());
+                            xmlWriter.WriteElementString("Recurring", transaction.Recurring.ToString());
+                            xmlWriter.WriteElementString("RecurringType", transaction.RecurringType.ToString());
+                            xmlWriter.WriteElementString("UserDataId", transaction.UserDataId.ToString());
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndElement();
+                            xmlWriter.WriteEndDocument();
+                            xmlWriter.Flush();
+                            xmlWriter.Close();
+                        }
+                    }
+                    else
+                    {
+                        XDocument xDocument = XDocument.Load(fileLocation);
+                        XElement root = xDocument.Element("TransactionData");
+                        IEnumerable<XElement> rows = root.Descendants("Transaction");
+                        XElement firstRow = rows.First();
+                        firstRow.AddBeforeSelf(
+                           new XElement("Transaction",
+                           new XElement("Id", transaction.Id.ToString()),
+                           new XElement("Amount", transaction.Amount.ToString()),
+                           new XElement("ContactDataId", transaction.ContactDataId.ToString()),
+                           new XElement("CreatedAt", transaction.CreatedAt.ToString()),
+                           new XElement("Recurring", transaction.Recurring.ToString()),
+                           new XElement("RecurringType", transaction.RecurringType.ToString()),
+                           new XElement("UserDataId", transaction.UserDataId.ToString())
+                           ));
+                        xDocument.Save(fileLocation);
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }

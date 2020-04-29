@@ -70,6 +70,7 @@ namespace CW_2.Views
 
             await _transaction.SaveTransactions(transactionList);
             loadTransactions();
+            await _transaction.WriteTransactionToXML(transactionList);
         }
 
         private void addTransactionField()
@@ -200,7 +201,8 @@ namespace CW_2.Views
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (selectedTransaction != null) {
+            if (selectedTransaction != null)
+            {
                 var transaction = new TransactionDTO()
                 {
                     Id = selectedTransaction.Id,
@@ -213,7 +215,7 @@ namespace CW_2.Views
                 };
                 await _transaction.UpdateTransaction(transaction);
                 loadTransactions();
-            }           
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
