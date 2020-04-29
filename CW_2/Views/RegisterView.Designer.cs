@@ -173,6 +173,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegisterView";
             this.Text = "Register";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RegisterView_FormClosed);
             this.Load += new System.EventHandler(this.RegisterView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -8,6 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using static CW_2.Models.ContactModal;
 using static CW_2.Models.Enums;
+using static CW_2.Models.ReportModel;
 
 namespace CW_2.Models
 {

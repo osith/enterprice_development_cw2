@@ -15,6 +15,12 @@
             public const string PAYEE = "Payee";
         }
 
+        public struct ReportType
+        {
+            public const string EVENTS = "Events";
+            public const string TRANSACTIONS = "Transactions";
+        }
+
         public struct EventTypeString
         {
             public const string APPOINTMENT = "Appointment";

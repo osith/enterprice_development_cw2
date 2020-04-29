@@ -29,7 +29,7 @@ namespace CW_2.Views
                     Id = Guid.NewGuid(),
                     Contact = txtContact.Text,
                     Email = txtEmail.Text,
-                    Type = ContactType.PAYER,
+                    Type = ContactType.PAYEE,
                     Name = txtName.Text,
                     AccountNo = txtDyn.Text,
                     BankName = txtBankName.Text
@@ -54,7 +54,7 @@ namespace CW_2.Views
                     Id = Guid.NewGuid(),
                     Contact = txtContact.Text,
                     Email = txtEmail.Text,
-                    Type = ContactType.PAYEE,
+                    Type = ContactType.PAYER,
                     Name = txtName.Text,
                     ExpectAmt = Double.Parse(txtDyn.Text)
                 };
@@ -67,7 +67,13 @@ namespace CW_2.Views
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
+            txtName.Text = string.Empty;
+            txtContact.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            lblDyn.Visible = false;
+            txtDyn.Visible = false;
+            txtBankName.Visible = false;
+            lblBnkName.Visible = false;
         }
 
         private void cmbType_SelectedValueChanged(object sender, EventArgs e)
@@ -207,6 +213,13 @@ namespace CW_2.Views
             }
             else
                 Helper.DisplayMessage("Please select contact to delete", MessageType.Warning);
+        }
+
+        private void ContactView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var next = new HomeNavView(_loggedUser);
+            next.Show();
+            this.Dispose();
         }
     }
 }

@@ -287,6 +287,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ContactView";
             this.Text = "ContactView";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ContactView_FormClosed);
             this.Load += new System.EventHandler(this.ContactView_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

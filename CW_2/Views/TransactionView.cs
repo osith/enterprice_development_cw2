@@ -254,5 +254,12 @@ namespace CW_2.Views
                 }
             }
         }
+
+        private void TransactionView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var next = new HomeNavView(_loggedUser);
+            next.Show();
+            this.Dispose();
+        }
     }
 }
