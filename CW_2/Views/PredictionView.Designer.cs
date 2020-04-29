@@ -36,6 +36,7 @@
             this.lblIncometot = new System.Windows.Forms.Label();
             this.lblExptot = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnStart = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,22 +109,34 @@
             this.panel1.Controls.Add(this.lblExptot);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblIncometot);
-            this.panel1.Location = new System.Drawing.Point(63, 150);
+            this.panel1.Location = new System.Drawing.Point(63, 219);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 218);
             this.panel1.TabIndex = 7;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(388, 133);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(312, 48);
+            this.btnStart.TabIndex = 8;
+            this.btnStart.Text = "Start Prediction";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // PredictionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 449);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dtpPredictDay);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "PredictionView";
             this.Text = "PredictionView";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PredictionView_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -141,5 +154,6 @@
         private System.Windows.Forms.Label lblIncometot;
         private System.Windows.Forms.Label lblExptot;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnStart;
     }
 }

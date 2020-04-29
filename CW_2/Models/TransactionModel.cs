@@ -8,7 +8,6 @@ using System.Xml;
 using System.Xml.Linq;
 using static CW_2.Models.ContactModal;
 using static CW_2.Models.Enums;
-using static CW_2.Models.ReportModel;
 
 namespace CW_2.Models
 {
@@ -151,7 +150,7 @@ namespace CW_2.Models
             var transaction = (from t in DbContext.TransactionEnities
                                join c in DbContext.ContactDatas
                                on t.ContactDataId equals c.Id
-                               where t.Id == transactionId
+                               where t.Id == transactionId && t.IsDeleted == null
                                select new TransactionViewDTO()
                                {
                                    Id = t.Id,
@@ -166,14 +165,16 @@ namespace CW_2.Models
         }
 
 
-        public Task<bool> WriteTransactionToXML(List<TransactionDTO> transactions) {
-            return Task.Run(()=>WritetoFile(transactions));
+        public Task<bool> WriteTransactionToXML(List<TransactionDTO> transactions)
+        {
+            return Task.Run(() => WritetoFile(transactions));
         }
 
 
         private bool WritetoFile(List<TransactionDTO> transactions)
         {
-            foreach (var transaction in transactions) {
+            foreach (var transaction in transactions)
+            {
                 try
                 {
                     String fileLocation = String.Format("{0}\\{1}",

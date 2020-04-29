@@ -57,5 +57,12 @@ namespace CW_2.Views
             next.Show();
             this.Dispose();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var next = new PredictionView(_loggedUser);
+            next.Show();
+            this.Dispose();
+        }
     }
 }
