@@ -20,6 +20,13 @@ namespace CW_2.Views
 
         private async void btnGenarate_Click(object sender, EventArgs e)
         {
+
+            if (cmbCategory.SelectedItem == null)
+            {
+                Helper.DisplayMessage("Please select category", MessageType.Warning);
+                return;
+            }
+
             var type = cmbCategory.SelectedItem.ToString();
             var reportModel = new ReportModelDTO()
             {

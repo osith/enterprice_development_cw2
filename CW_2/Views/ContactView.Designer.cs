@@ -118,9 +118,9 @@
             // txtBankName
             // 
             this.txtBankName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBankName.Location = new System.Drawing.Point(172, 304);
+            this.txtBankName.Location = new System.Drawing.Point(202, 304);
             this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Size = new System.Drawing.Size(296, 30);
+            this.txtBankName.Size = new System.Drawing.Size(289, 30);
             this.txtBankName.TabIndex = 16;
             this.txtBankName.Visible = false;
             // 
@@ -137,9 +137,9 @@
             // txtDyn
             // 
             this.txtDyn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDyn.Location = new System.Drawing.Point(172, 257);
+            this.txtDyn.Location = new System.Drawing.Point(202, 257);
             this.txtDyn.Name = "txtDyn";
-            this.txtDyn.Size = new System.Drawing.Size(296, 30);
+            this.txtDyn.Size = new System.Drawing.Size(289, 30);
             this.txtDyn.TabIndex = 14;
             this.txtDyn.Visible = false;
             // 
@@ -174,9 +174,9 @@
             this.cmbType.Items.AddRange(new object[] {
             "Payer",
             "Payee"});
-            this.cmbType.Location = new System.Drawing.Point(172, 72);
+            this.cmbType.Location = new System.Drawing.Point(202, 72);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(296, 33);
+            this.cmbType.Size = new System.Drawing.Size(289, 33);
             this.cmbType.TabIndex = 11;
             this.cmbType.SelectedValueChanged += new System.EventHandler(this.cmbType_SelectedValueChanged);
             // 
@@ -193,9 +193,9 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(172, 212);
+            this.txtEmail.Location = new System.Drawing.Point(202, 212);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(296, 30);
+            this.txtEmail.Size = new System.Drawing.Size(289, 30);
             this.txtEmail.TabIndex = 9;
             // 
             // label6
@@ -211,9 +211,9 @@
             // txtContact
             // 
             this.txtContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContact.Location = new System.Drawing.Point(172, 166);
+            this.txtContact.Location = new System.Drawing.Point(202, 166);
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(296, 30);
+            this.txtContact.Size = new System.Drawing.Size(289, 30);
             this.txtContact.TabIndex = 7;
             // 
             // label5
@@ -239,9 +239,9 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(172, 120);
+            this.txtName.Location = new System.Drawing.Point(202, 120);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(296, 30);
+            this.txtName.Size = new System.Drawing.Size(289, 30);
             this.txtName.TabIndex = 3;
             // 
             // label2
@@ -278,7 +278,7 @@
             // 
             this.tableContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableContacts.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableContacts.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.tableContacts.Location = new System.Drawing.Point(17, 52);
             this.tableContacts.MultiSelect = false;
             this.tableContacts.Name = "tableContacts";
@@ -306,6 +306,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1404, 661);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);

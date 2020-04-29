@@ -28,6 +28,8 @@ namespace CW_2.Views
 
             lblIncometot.Text = "Rs. " + string.Format("{0:#.00}", (responce.PredictIncome > 0 ? responce.PredictIncome : 0));
             lblExptot.Text = "Rs. " + string.Format("{0:#.00}", (responce.PredictExpence > 0 ? responce.PredictExpence : 0));
+
+            panel1.Visible = true;
         }
 
         private void PredictionView_FormClosed(object sender, FormClosedEventArgs e)

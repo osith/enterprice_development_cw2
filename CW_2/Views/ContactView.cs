@@ -21,6 +21,15 @@ namespace CW_2.Views
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
+
+            if (cmbType.SelectedItem == null || string.IsNullOrEmpty(txtName.Text)
+                || string.IsNullOrEmpty(txtContact.Text) || string.IsNullOrEmpty(txtEmail.Text)
+                || string.IsNullOrEmpty(txtDyn.Text))
+            {
+                Helper.DisplayMessage("Please fill all fileds", MessageType.Warning);
+                return;
+            }
+
             var type = cmbType.SelectedItem.ToString();
             if (type == ContactType.PAYEE)
             {
@@ -36,6 +45,7 @@ namespace CW_2.Views
                 };
 
                 await _contact.SaveUser(payee, _loggedUser);
+                Helper.DisplayMessage("Contact added", MessageType.Complete);
             }
             else if (type == ContactType.PAYER)
             {
@@ -46,7 +56,8 @@ namespace CW_2.Views
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Invalid expected amount");
+                    Helper.DisplayMessage("Invalid expected amount", MessageType.Error);
+                    return;
                 }
 
                 var payer = new PayerDTO()
@@ -60,6 +71,7 @@ namespace CW_2.Views
                 };
 
                 await _contact.SaveUser(payer, _loggedUser);
+                Helper.DisplayMessage("Contact added", MessageType.Complete);
             }
 
             loadContacts();
@@ -174,6 +186,9 @@ namespace CW_2.Views
                     };
 
                     await _contact.UpdateContact(payee, _loggedUser);
+                    Helper.DisplayMessage("Contact updated", MessageType.Complete);
+                    updateUserId = Guid.Empty;
+                    loadContacts();
                 }
                 else if (type == ContactType.PAYER)
                 {
@@ -198,21 +213,33 @@ namespace CW_2.Views
                     };
 
                     await _contact.UpdateContact(payer, _loggedUser);
+                    Helper.DisplayMessage("Contact updated", MessageType.Complete);
+                    updateUserId = Guid.Empty;
+                    loadContacts();
                 }
+            }
+            else
+            {
+                Helper.DisplayMessage("Please select contact to update", MessageType.Warning);
             }
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (updateUserId != Guid.Empty)
+            var selected = (ContactViewDTO)tableContacts.SelectedRows[0].DataBoundItem;
+            if (Helper.ConfirmMessage("Do you need to delete selected contact in table?"))
             {
-                if (await _contact.DeleteContact(updateUserId))
-                    Helper.DisplayMessage("Contact deleted", MessageType.Complete);
+                if (selected.Id != Guid.Empty)
+                {
+                    if (await _contact.DeleteContact(selected.Id))
+                        Helper.DisplayMessage("Contact deleted", MessageType.Complete);
+                    else
+                        Helper.DisplayMessage("Contact not deleted", MessageType.Error);
+                }
                 else
-                    Helper.DisplayMessage("Contact not deleted", MessageType.Error);
+                    Helper.DisplayMessage("Please select contact to delete", MessageType.Warning);
+                loadContacts();
             }
-            else
-                Helper.DisplayMessage("Please select contact to delete", MessageType.Warning);
         }
 
         private void ContactView_FormClosed(object sender, FormClosedEventArgs e)

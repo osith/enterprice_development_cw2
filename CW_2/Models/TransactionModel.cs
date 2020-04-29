@@ -170,7 +170,6 @@ namespace CW_2.Models
             return Task.Run(() => WritetoFile(transactions));
         }
 
-
         private bool WritetoFile(List<TransactionDTO> transactions)
         {
             foreach (var transaction in transactions)
@@ -229,6 +228,18 @@ namespace CW_2.Models
                 }
             }
             return true;
+        }
+
+        public async Task<bool> DeleteTransaction(Guid transId)
+        {
+            var transData = await DbContext.TransactionEnities.FindAsync(transId);
+            if (transData != null)
+            {
+                transData.IsDeleted = true;
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
     }

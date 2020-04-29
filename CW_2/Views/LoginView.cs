@@ -2,6 +2,7 @@
 using CW_2.Views;
 using System;
 using System.Windows.Forms;
+using static CW_2.Models.Enums;
 using static CW_2.Models.UserModal;
 
 namespace CW_2
@@ -17,11 +18,23 @@ namespace CW_2
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(txtEmail.Text))
+            {
+                Helper.DisplayMessage("Please fill all fileds", MessageType.Warning);
+                return;
+            }
             var user = new LoginUserDTO()
             {
-                Password = "osith",
-                Phone = "0717482166"
+                Password = txtPassword.Text,
+                Email = txtEmail.Text
             };
+            //Need to remove
+            //var user = new LoginUserDTO()
+            //{
+            //    Password = "osith",
+            //    Email = "osith94@gmail.com"
+            //};
+
             var userData = await _user.ValidateLogin(user);
             if (userData != null)
             {
@@ -29,8 +42,9 @@ namespace CW_2
                 next.Show();
                 this.Hide();
             }
-            else {
-                MessageBox.Show("Invalid user credentials");
+            else
+            {
+                Helper.DisplayMessage("Invalid user credentials", MessageType.Error);
             }
 
         }

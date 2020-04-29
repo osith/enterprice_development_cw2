@@ -41,8 +41,8 @@
             // 
             this.btnContact.BackColor = System.Drawing.Color.MistyRose;
             this.btnContact.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnContact.Location = new System.Drawing.Point(28, 97);
+            this.btnContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContact.Location = new System.Drawing.Point(16, 142);
             this.btnContact.Name = "btnContact";
             this.btnContact.Size = new System.Drawing.Size(338, 82);
             this.btnContact.TabIndex = 0;
@@ -53,8 +53,8 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.PeachPuff;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(436, 97);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(424, 142);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(338, 82);
             this.button2.TabIndex = 1;
@@ -65,8 +65,8 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Khaki;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(28, 201);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(16, 246);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(338, 82);
             this.button3.TabIndex = 2;
@@ -77,8 +77,8 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.SkyBlue;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(436, 201);
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(424, 246);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(338, 82);
             this.button5.TabIndex = 4;
@@ -89,8 +89,8 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(245, 309);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(233, 354);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(338, 82);
             this.button6.TabIndex = 5;
@@ -124,6 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(796, 503);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);

@@ -21,7 +21,7 @@ namespace CW_2.Models
 
         public class LoginUserDTO
         {
-            public string Phone { get; set; }
+            public string Email { get; set; }
             public string Password { get; set; }
         }
 
@@ -35,7 +35,7 @@ namespace CW_2.Models
 
         public async Task<RegisterUserDTO> ValidateLogin(LoginUserDTO model)
         {
-            var user = await DbContext.UserDatas.Where(u => u.Phone == model.Phone && u.Password == model.Password)
+            var user = await DbContext.UserDatas.Where(u => u.Email == model.Email && u.Password == model.Password)
                 .FirstOrDefaultAsync();
             if (user != null)
                 return Mapper.Map<RegisterUserDTO>(user);

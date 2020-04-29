@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static CW_2.Models.Enums;
 using static CW_2.Models.TransactionModel;
 using static CW_2.Models.UserModal;
 
@@ -55,6 +56,21 @@ namespace CW_2.Views
             var transactionList = new List<TransactionDTO>();
             for (int i = 0; i < lblAmounts.Count; i++)
             {
+                if (cmbContacts[i].SelectedItem == null || string.IsNullOrEmpty(txtAmounts[i].Text))
+                {
+                    Helper.DisplayMessage("Please fill all fileds in slot " + (i + 1), MessageType.Warning);
+                    return;
+                }
+
+                if (chkRecurrings[i].Checked)
+                {
+                    if (cmbRecurrings[i].SelectedItem == null)
+                    {
+                        Helper.DisplayMessage("Please select recurring type in slot " + (i + 1), MessageType.Warning);
+                        return;
+                    }
+                }
+
                 var transaction = new TransactionDTO()
                 {
                     Id = Guid.NewGuid(),
@@ -67,10 +83,18 @@ namespace CW_2.Views
                 };
                 transactionList.Add(transaction);
             }
-
-            await _transaction.SaveTransactions(transactionList);
-            loadTransactions();
-            await _transaction.WriteTransactionToXML(transactionList);
+            if (transactionList.Count > 0)
+            {
+                await _transaction.SaveTransactions(transactionList);
+                loadTransactions();
+                await _transaction.WriteTransactionToXML(transactionList);
+                Helper.DisplayMessage("Transactions added", MessageType.Complete);
+            }
+            else
+            {
+                Helper.DisplayMessage("No transaction records to save, add using Add button ", MessageType.Warning);
+                return;
+            }
         }
 
         private void addTransactionField()
@@ -202,15 +226,43 @@ namespace CW_2.Views
             addTransactionField();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
-
+            var selected = (TransactionViewDTO)tableTransaction.SelectedRows[0].DataBoundItem;
+            if (Helper.ConfirmMessage("Do you need to delete selected transaction in table?"))
+            {
+                if (selected.Id != Guid.Empty)
+                {
+                    if (await _transaction.DeleteTransaction(selected.Id))
+                        Helper.DisplayMessage("Transaction deleted", MessageType.Complete);
+                    else
+                        Helper.DisplayMessage("Transaction not deleted", MessageType.Error);
+                }
+                else
+                    Helper.DisplayMessage("Please select transaction to delete", MessageType.Warning);
+                loadTransactions();
+            }
         }
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedTransaction != null)
             {
+                if (cmbContacts[0].SelectedItem == null || string.IsNullOrEmpty(txtAmounts[0].Text))
+                {
+                    Helper.DisplayMessage("Please fill all fileds", MessageType.Warning);
+                    return;
+                }
+
+                if (chkRecurrings[0].Checked)
+                {
+                    if (cmbRecurrings[0].SelectedItem == null)
+                    {
+                        Helper.DisplayMessage("Please select recurring type", MessageType.Warning);
+                        return;
+                    }
+                }
+
                 var transaction = new TransactionDTO()
                 {
                     Id = selectedTransaction.Id,
@@ -223,6 +275,7 @@ namespace CW_2.Views
                 };
                 await _transaction.UpdateTransaction(transaction);
                 loadTransactions();
+                Helper.DisplayMessage("Transactions updated", MessageType.Complete);
             }
         }
 
@@ -257,8 +310,9 @@ namespace CW_2.Views
                     cmbRecurrings[0].SelectedItem = transactionDetails.RecurringType;
 
                     if (chkRecurrings[0].Checked)
+                        cmbRecurrings[0].Visible = true;
+                    else
                         cmbRecurrings[0].Visible = false;
-
                 }
             }
         }

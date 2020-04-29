@@ -39,6 +39,22 @@ namespace CW_2.Views
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
+
+            if (cmbType.SelectedItem == null || string.IsNullOrEmpty(txtDescription.Text))
+            {
+                Helper.DisplayMessage("Please fill all fileds", MessageType.Warning);
+                return;
+            }
+
+            if (chkIsRecurring.Checked)
+            {
+                if (cmbRecurringType.SelectedItem == null)
+                {
+                    Helper.DisplayMessage("Please select recurring type", MessageType.Warning);
+                    return;
+                }
+            }
+
             var type = cmbType.SelectedItem.ToString();
             if (type == EventTypeString.APPOINTMENT)
             {
@@ -55,6 +71,7 @@ namespace CW_2.Views
                     EventOn = dtpDateTime.Value
                 };
                 await _eventModel.SaveEvent(appointment);
+                Helper.DisplayMessage("Appointment added", MessageType.Complete);
             }
             else if (type == EventTypeString.TASK)
             {
@@ -70,6 +87,7 @@ namespace CW_2.Views
                     Complete = dtpDateTime.Value
                 };
                 await _eventModel.SaveEvent(task);
+                Helper.DisplayMessage("Event added", MessageType.Complete);
             }
             loadEvents();
         }
@@ -120,7 +138,7 @@ namespace CW_2.Views
                 cmbType.SelectedItem = selected.Type;
                 chkIsRecurring.Checked = selected.Recurring == true ? true : false;
                 cmbRecurringType.SelectedItem = selected.Recurring == true ? selected.RecurringType : null;
-                
+
                 if (selected.Type == EventTypeString.APPOINTMENT)
                 {
                     lblDynDate.Text = "On";
@@ -153,6 +171,7 @@ namespace CW_2.Views
             cmbRecurringType.SelectedValue = null;
             cmbRecurringType.Visible = false;
             dtpDateTime.Value = DateTime.UtcNow;
+            dtpDateTime.Visible = false;
             lblDynDate.Visible = false;
             txtPlace.Text = string.Empty;
             txtPlace.Visible = false;
@@ -161,6 +180,21 @@ namespace CW_2.Views
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (cmbType.SelectedItem == null || string.IsNullOrEmpty(txtDescription.Text))
+            {
+                Helper.DisplayMessage("Please fill all fileds", MessageType.Warning);
+                return;
+            }
+
+            if (chkIsRecurring.Checked)
+            {
+                if (cmbRecurringType.SelectedItem == null)
+                {
+                    Helper.DisplayMessage("Please select recurring type", MessageType.Warning);
+                    return;
+                }
+            }
+
             var type = cmbType.SelectedItem.ToString();
             if (type == EventTypeString.APPOINTMENT)
             {
@@ -176,6 +210,7 @@ namespace CW_2.Views
                     EventOn = dtpDateTime.Value
                 };
                 await _eventModel.UpdateEvent(appointment);
+                Helper.DisplayMessage("Appointment updated", MessageType.Complete);
             }
             else if (type == EventTypeString.TASK)
             {
@@ -190,8 +225,27 @@ namespace CW_2.Views
                     Complete = dtpDateTime.Value
                 };
                 await _eventModel.UpdateEvent(task);
+                Helper.DisplayMessage("Task updated", MessageType.Complete);
             }
             loadEvents();
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            var selected = (EventViewDTO)eventTabel.SelectedRows[0].DataBoundItem;
+            if (Helper.ConfirmMessage("Do you need to delete selected event in table?"))
+            {
+                if (selected.Id != Guid.Empty)
+                {
+                    if (await _eventModel.DeleteEvent(selected.Id))
+                        Helper.DisplayMessage("Event deleted", MessageType.Complete);
+                    else
+                        Helper.DisplayMessage("Event not deleted", MessageType.Error);
+                }
+                else
+                    Helper.DisplayMessage("Please select event to delete", MessageType.Warning);
+                loadEvents();
+            }
         }
     }
 }

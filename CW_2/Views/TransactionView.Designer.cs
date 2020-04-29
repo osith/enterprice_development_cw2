@@ -156,6 +156,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1476, 733);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
@@ -168,7 +169,7 @@
             this.Controls.Add(this.label1);
             this.Name = "TransactionView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TransactionView";
+            this.Text = "Transaction";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TransactionView_FormClosed);
             this.Load += new System.EventHandler(this.TransactionView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tableTransaction)).EndInit();

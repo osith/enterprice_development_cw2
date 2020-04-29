@@ -112,10 +112,11 @@
             this.panel1.Controls.Add(this.lblExptot);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblIncometot);
-            this.panel1.Location = new System.Drawing.Point(133, 204);
+            this.panel1.Location = new System.Drawing.Point(21, 204);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(544, 177);
+            this.panel1.Size = new System.Drawing.Size(760, 177);
             this.panel1.TabIndex = 7;
+            this.panel1.Visible = false;
             // 
             // btnStart
             // 
@@ -133,6 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(805, 408);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.panel1);

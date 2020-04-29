@@ -20,5 +20,13 @@ namespace CW_2.Models
                 MessageBox.Show(body, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public static bool ConfirmMessage(string body) {
+            var result = MessageBox.Show(body, "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.OK)
+                return true;
+            return false;
+        }
+
     }
 }

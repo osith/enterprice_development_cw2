@@ -96,5 +96,17 @@ namespace CW_2.Models
             await DbContext.SaveChangesAsync();
         }
 
+        public async Task<bool> DeleteEvent(Guid eventId)
+        {
+            var eventData = await DbContext.EventEntities.FindAsync(eventId);
+            if (eventData != null)
+            {
+                eventData.IsDeleted = true;
+                await DbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
     }
 }

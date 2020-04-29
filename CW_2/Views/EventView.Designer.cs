@@ -172,10 +172,10 @@
             "Weekly",
             "Monthly",
             "Yearly"});
-            this.cmbRecurringType.Location = new System.Drawing.Point(324, 295);
+            this.cmbRecurringType.Location = new System.Drawing.Point(342, 295);
             this.cmbRecurringType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbRecurringType.Name = "cmbRecurringType";
-            this.cmbRecurringType.Size = new System.Drawing.Size(174, 33);
+            this.cmbRecurringType.Size = new System.Drawing.Size(156, 33);
             this.cmbRecurringType.TabIndex = 15;
             this.cmbRecurringType.Visible = false;
             // 
@@ -285,6 +285,7 @@
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // panel2
             // 
@@ -355,6 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1371, 688);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
