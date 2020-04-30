@@ -47,9 +47,9 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkMonth = new System.Windows.Forms.CheckBox();
+            this.chkWeek = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.eventTabel = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -290,15 +290,39 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.chkMonth);
+            this.panel2.Controls.Add(this.chkWeek);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.eventTabel);
             this.panel2.Location = new System.Drawing.Point(539, 80);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(817, 589);
             this.panel2.TabIndex = 17;
+            // 
+            // chkMonth
+            // 
+            this.chkMonth.AutoSize = true;
+            this.chkMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMonth.Location = new System.Drawing.Point(638, 12);
+            this.chkMonth.Name = "chkMonth";
+            this.chkMonth.Size = new System.Drawing.Size(163, 29);
+            this.chkMonth.TabIndex = 19;
+            this.chkMonth.Text = "Current Month";
+            this.chkMonth.UseVisualStyleBackColor = true;
+            this.chkMonth.CheckedChanged += new System.EventHandler(this.chkWeek_CheckedChanged);
+            // 
+            // chkWeek
+            // 
+            this.chkWeek.AutoSize = true;
+            this.chkWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWeek.Location = new System.Drawing.Point(472, 12);
+            this.chkWeek.Name = "chkWeek";
+            this.chkWeek.Size = new System.Drawing.Size(160, 29);
+            this.chkWeek.TabIndex = 18;
+            this.chkWeek.Text = "Current Week";
+            this.chkWeek.UseVisualStyleBackColor = true;
+            this.chkWeek.CheckedChanged += new System.EventHandler(this.chkWeek_CheckedChanged);
             // 
             // label6
             // 
@@ -309,32 +333,6 @@
             this.label6.Size = new System.Drawing.Size(171, 32);
             this.label6.TabIndex = 24;
             this.label6.Text = "View Events";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(639, 12);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(162, 29);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Current Month";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(478, 12);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(153, 29);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Curent Week";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // eventTabel
             // 
@@ -398,9 +396,9 @@
         private System.Windows.Forms.DataGridView eventTabel;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.DateTimePicker dtpDateTime;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkMonth;
+        private System.Windows.Forms.CheckBox chkWeek;
     }
 }

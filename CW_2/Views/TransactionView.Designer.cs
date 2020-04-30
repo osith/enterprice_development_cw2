@@ -35,8 +35,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.tableTransaction = new System.Windows.Forms.DataGridView();
             this.lblAdd = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.chkWeek = new System.Windows.Forms.CheckBox();
+            this.chkMonth = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tableTransaction)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,31 +125,29 @@
             this.lblAdd.Text = "+";
             this.lblAdd.Click += new System.EventHandler(this.label2_Click);
             // 
-            // radioButton2
+            // chkWeek
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(1301, 85);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(162, 29);
-            this.radioButton2.TabIndex = 14;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Current Month";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.chkWeek.AutoSize = true;
+            this.chkWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWeek.Location = new System.Drawing.Point(1135, 85);
+            this.chkWeek.Name = "chkWeek";
+            this.chkWeek.Size = new System.Drawing.Size(160, 29);
+            this.chkWeek.TabIndex = 15;
+            this.chkWeek.Text = "Current Week";
+            this.chkWeek.UseVisualStyleBackColor = true;
+            this.chkWeek.CheckedChanged += new System.EventHandler(this.rbWeek_CheckedChanged);
             // 
-            // radioButton1
+            // chkMonth
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(1140, 85);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(153, 29);
-            this.radioButton1.TabIndex = 13;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Curent Week";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.chkMonth.AutoSize = true;
+            this.chkMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMonth.Location = new System.Drawing.Point(1301, 85);
+            this.chkMonth.Name = "chkMonth";
+            this.chkMonth.Size = new System.Drawing.Size(163, 29);
+            this.chkMonth.TabIndex = 16;
+            this.chkMonth.Text = "Current Month";
+            this.chkMonth.UseVisualStyleBackColor = true;
+            this.chkMonth.CheckedChanged += new System.EventHandler(this.rbWeek_CheckedChanged);
             // 
             // TransactionView
             // 
@@ -158,8 +156,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1476, 733);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.chkMonth);
+            this.Controls.Add(this.chkWeek);
             this.Controls.Add(this.lblAdd);
             this.Controls.Add(this.tableTransaction);
             this.Controls.Add(this.btnUpdate);
@@ -187,7 +185,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView tableTransaction;
         private System.Windows.Forms.Label lblAdd;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.CheckBox chkWeek;
+        private System.Windows.Forms.CheckBox chkMonth;
     }
 }

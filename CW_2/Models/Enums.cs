@@ -15,6 +15,12 @@
             public const string PAYEE = "Payee";
         }
 
+        public struct ReportTypeTable
+        {
+            public const string MONTHLY = "Month";
+            public const string WEEKLY = "Week";
+        }
+
         public struct ReportType
         {
             public const string EVENTS = "Events";

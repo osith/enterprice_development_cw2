@@ -242,5 +242,45 @@ namespace CW_2.Models
             return false;
         }
 
+        public List<TransactionViewDTO> SearchTransactions(string type)
+        {
+            var responce = new List<TransactionViewDTO>();
+            var today = DateTime.UtcNow;
+            var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            var transactions = (from t in DbContext.TransactionEnities
+                                join c in DbContext.ContactDatas
+                                on t.ContactDataId equals c.Id
+                                where t.IsDeleted == null && c.IsDeleted == null
+                                && t.UserDataId == userId
+                                select new TransactionViewDTO()
+                                {
+                                    Id = t.Id,
+                                    Amount = t.Amount,
+                                    ContactName = c.Name,
+                                    Recurring = t.Recurring,
+                                    RecurringType = t.RecurringType.ToString(),
+                                    CreatedAt = t.CreatedAt
+                                }).ToList();
+
+            foreach (var transaction in transactions)
+            {
+                transaction.RecurringType = getRecurringType(transaction.RecurringType);
+                if (type == ReportTypeTable.WEEKLY)
+                {
+                    var d1 = today.Date.AddDays(-1 * (int)cal.GetDayOfWeek(today));
+                    var d2 = transaction.CreatedAt.Date.AddDays(-1 * (int)cal.GetDayOfWeek(transaction.CreatedAt));
+                    if (d1 == d2)
+                        responce.Add(transaction);
+                }
+                else if (type == ReportTypeTable.MONTHLY)
+                {
+                    if (today.Month == transaction.CreatedAt.Month && today.Year == transaction.CreatedAt.Year)
+                        responce.Add(transaction);
+                }
+
+            }
+            return responce;
+        }
+
     }
 }

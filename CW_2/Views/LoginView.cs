@@ -28,6 +28,7 @@ namespace CW_2
                 Password = txtPassword.Text,
                 Email = txtEmail.Text
             };
+
             //Need to remove
             //var user = new LoginUserDTO()
             //{

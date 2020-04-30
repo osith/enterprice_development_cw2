@@ -323,5 +323,28 @@ namespace CW_2.Views
             next.Show();
             this.Dispose();
         }
+
+        private void rbWeek_CheckedChanged(object sender, EventArgs e)
+        {
+            var wkvalue = chkWeek.Checked;
+            var mnthvalue = chkMonth.Checked;
+            if (wkvalue)
+            {
+                chkMonth.Checked = false;
+                tableTransaction.DataSource = _transaction.SearchTransactions(ReportTypeTable.WEEKLY);
+                tableTransaction.Columns["Id"].Visible = false;
+                tableTransaction.Columns["Recurring"].Visible = false;
+            }
+            else if (mnthvalue)
+            {
+                chkWeek.Checked = false;
+                tableTransaction.DataSource = _transaction.SearchTransactions(ReportTypeTable.MONTHLY);
+                tableTransaction.Columns["Id"].Visible = false;
+                tableTransaction.Columns["Recurring"].Visible = false;
+            }
+            else {
+                loadTransactions();
+            }
+        }
     }
 }

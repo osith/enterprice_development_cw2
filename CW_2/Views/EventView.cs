@@ -247,5 +247,33 @@ namespace CW_2.Views
                 loadEvents();
             }
         }
+
+        private void chkWeek_CheckedChanged(object sender, EventArgs e)
+        {
+            var wkvalue = chkWeek.Checked;
+            var mnthvalue = chkMonth.Checked;
+            if (wkvalue)
+            {
+                chkMonth.Checked = false;
+                eventTabel.DataSource = _eventModel.SearchTransactions(ReportTypeTable.WEEKLY, _loggedUser.Id);
+                eventTabel.Columns["Id"].Visible = false;
+                eventTabel.Columns["UserDataId"].Visible = false;
+                eventTabel.Columns["CreatedAt"].Visible = false;
+                eventTabel.Columns["IsDeleted"].Visible = false;
+            }
+            else if (mnthvalue)
+            {
+                chkWeek.Checked = false;
+                eventTabel.DataSource = _eventModel.SearchTransactions(ReportTypeTable.MONTHLY, _loggedUser.Id);
+                eventTabel.Columns["Id"].Visible = false;
+                eventTabel.Columns["UserDataId"].Visible = false;
+                eventTabel.Columns["CreatedAt"].Visible = false;
+                eventTabel.Columns["IsDeleted"].Visible = false;
+            }
+            else
+            {
+                loadEvents();
+            }
+        }
     }
 }

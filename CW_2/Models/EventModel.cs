@@ -108,5 +108,41 @@ namespace CW_2.Models
             return false;
         }
 
+        public List<EventViewDTO> SearchTransactions(string type, Guid userId)
+        {
+            var responce = new List<EventEntity>();
+            var today = DateTime.UtcNow;
+            var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+            var events = DbContext.EventEntities.Where(e => e.UserDataId == userId && e.IsDeleted == null).ToList();
+            //return Mapper.Map<List<EventViewDTO>>(events);
+
+            foreach (var evnt in events)
+            {
+                if (type == ReportTypeTable.WEEKLY)
+                {
+                    var d1 = today.Date.AddDays(-1 * (int)cal.GetDayOfWeek(today));
+                    var d2 = DateTime.UtcNow;
+                    if (evnt.Complete.HasValue)
+                        d2 = evnt.Complete.Value.Date.AddDays(-1 * (int)cal.GetDayOfWeek(evnt.Complete.Value));
+                    if (evnt.EventOn.HasValue)
+                        d2 = evnt.EventOn.Value.Date.AddDays(-1 * (int)cal.GetDayOfWeek(evnt.EventOn.Value));
+                    if (d1 == d2)
+                        responce.Add(evnt);
+                }
+                else if (type == ReportTypeTable.MONTHLY)
+                {
+                    var testDate = DateTime.UtcNow;
+                    if (evnt.Complete.HasValue)
+                        testDate = evnt.Complete.Value;
+                    else if (evnt.EventOn.HasValue)
+                        testDate = evnt.EventOn.Value;
+                    if (today.Month == testDate.Month && today.Year == testDate.Year)
+                        responce.Add(evnt);
+                }
+
+            }
+            return Mapper.Map<List<EventViewDTO>>(responce);
+        }
+
     }
 }
