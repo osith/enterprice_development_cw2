@@ -84,7 +84,9 @@ namespace CW_2.Views
             txtEmail.Text = string.Empty;
             lblDyn.Visible = false;
             txtDyn.Visible = false;
+            txtDyn.Text = string.Empty;
             txtBankName.Visible = false;
+            txtBankName.Text = string.Empty;
             lblBnkName.Visible = false;
         }
 

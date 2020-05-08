@@ -58,9 +58,10 @@ namespace CW_2.Models
 
             if (transactions.Count > 0)
             {
+                var datecounts = transactions.GroupBy(d => d.CreatedAt.Date).Count();
                 var groupTransactions = transactions.GroupBy(i => i.ContactType).Select(s => new TransactionCategory()
                 {
-                    Amount = s.Sum(t => t.Amount),
+                    Amount = s.Sum(t => t.Amount) / datecounts,
                     Count = s.Count(),
                     Type = s.First().ContactType
                 }).ToList();
