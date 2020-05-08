@@ -59,7 +59,7 @@ namespace CW_2.Models
             if (userId == Guid.Empty)
                 return null;
 
-            var contacts = DbContext.ContactDatas.Where(c => c.UserDataId == userId).ToList();
+            var contacts = DbContext.ContactDatas.Where(c => c.UserDataId == userId && c.IsDeleted == null).ToList();
             var contactNames = contacts.Select(c => c.Name).ToList();
             comboContacts.Clear();
             foreach (var item in contactNames)
