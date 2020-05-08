@@ -55,6 +55,7 @@ namespace CW_2.Views
         private void RegisterView_FormClosed(object sender, FormClosedEventArgs e)
         {
             var next = new LoginView();
+            _user.Dispose();
             next.Show();
             this.Dispose();
         }

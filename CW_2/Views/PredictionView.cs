@@ -35,6 +35,7 @@ namespace CW_2.Views
         private void PredictionView_FormClosed(object sender, FormClosedEventArgs e)
         {
             var next = new HomeNavView(_loggedUser);
+            _predictionModel.Dispose();
             next.Show();
             this.Dispose();
         }

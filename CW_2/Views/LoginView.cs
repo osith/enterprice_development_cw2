@@ -53,8 +53,14 @@ namespace CW_2
         private void btnRegister_Click(object sender, EventArgs e)
         {
             var next = new RegisterView();
+            _user.Dispose();
             next.Show();
             this.Hide();
+        }
+
+        private void LoginView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

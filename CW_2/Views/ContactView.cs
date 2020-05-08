@@ -247,6 +247,7 @@ namespace CW_2.Views
         private void ContactView_FormClosed(object sender, FormClosedEventArgs e)
         {
             var next = new HomeNavView(_loggedUser);
+            _contact.Dispose();
             next.Show();
             this.Dispose();
         }
